@@ -41,7 +41,6 @@
     font-size: 250%;
     margin-bottom: 60%;
     margin-top: -50%;
-
 }
 
 .form{
@@ -64,6 +63,79 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Josefin Sans Bold;
+    font-family: 'Josefin Sans Bold';
     font-size: 250%;
+}
+
+@media (max-height: 650px){
+    .elipse1{
+        width: 40%;
+        height: 40%;
+    }
+    .elipse2{
+        width: 40%;
+        height: 40%
+    }
+}
+
+@media (max-width: 1203px) {
+    .elipse1, .elipse2 {
+        display: none;
+    }
+
+    .page {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo, .login {
+        width: 100%;
+        position: relative;
+        top: 0;
+    }
+
+    .logo {
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login {
+        height: 100%;
+        background-color: #BA6DB5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login .title h1, .logo .title h1 {
+        font-size: 130%;
+        margin: 0;
+    }
+
+   
+    .form {
+        margin: 0;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .login .title h1, .logo .title h1 {
+        font-size: 150%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login .title h1, .logo .title h1 {
+        font-size: 100%;
+    }
 }

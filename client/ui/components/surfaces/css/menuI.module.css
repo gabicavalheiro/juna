@@ -1,5 +1,4 @@
-
- .link {
+.link {
     display: flex;
     color: white;
     padding: 20px;
@@ -9,7 +8,6 @@
     overflow: hidden;
     font-family: 'Josefin Sans Medium';
     font-size: 120%;
-    transition: background-color 0.3s;
     width: 100%;
     text-decoration: none; /* Remover sublinhado */
 }
@@ -27,4 +25,40 @@
 
 .Link{
     text-decoration: none;
+}
+
+/* Ajustes de fontes para responsividade */
+@media (max-width: 768px) {
+    .link {
+        font-size: 90%; /* Ajustado proporcionalmente */
+        padding: 20px; /* Ajustado proporcionalmente */
+    }
+}
+
+@media (max-width: 480px) {
+    .link {
+        font-size: 80%; /* Ajustado proporcionalmente */
+        padding: 15px; /* Ajustado proporcionalmente */
+    }
+}
+
+@media (max-width: 320px) {
+    .link {
+        font-size: 70%; /* Ajustado proporcionalmente */
+        padding: 10px; /* Ajustado proporcionalmente */
+    }
+}
+
+@media (max-width: 240px) {
+    .link {
+        font-size: 60%; /* Ajustado proporcionalmente */
+        padding: 5px; /* Ajustado proporcionalmente */
+    }
+}
+
+@media (max-width: 160px) {
+    .link {
+        font-size: 50%; /* Ajustado proporcionalmente */
+        padding: 3px; /* Ajustado proporcionalmente */
+    }
 }

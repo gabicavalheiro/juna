@@ -13,6 +13,8 @@
     src: url('../../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
+
+
 .calendar {
     width: 100%;
     max-width: 800px;
@@ -20,7 +22,6 @@
     text-align: center;
     font-family: 'Josefin Sans Medium';
     color: #ad60a6;
-
 }
 
 .header {
@@ -33,15 +34,12 @@
 .header .h2 {
     font-family: 'Josefin Sans Medium';
     text-transform: uppercase;
-
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
-
-
 }
 
 .button button {
@@ -59,12 +57,12 @@
     padding: 10px;
     background-color: #f9f9f9;
     position: relative;
-    display: inline-block; /* Permite ajuste ao conteúdo */
-    vertical-align: top; /* Alinha os dias no topo para evitar espaçamentos desiguais */
-    min-width: 80px; /* Largura mínima para evitar que o dia fique muito estreito */
-    max-width: 120px; /* Largura máxima para evitar que o dia fique muito largo */
-    white-space: normal; /* Permite que o texto quebre naturalmente */
-    word-wrap: break-word; /* Quebra de palavra para o caso de palavras longas */
+    display: inline-block;
+    vertical-align: top;
+    min-width: 80px;
+    max-width: 120px;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 .day span {
@@ -89,52 +87,81 @@ button .pass {
     font-size: 50%;
 }
 
-.input {
+.input,
+
+.inputTime {
     border: 1px solid #ad60a6;
     border-radius: 5px;
     padding: 5%;
     align-self: center;
-    width: 80% ;
+    width: 80%;
+    margin: 4% auto; /* Centraliza e dá espaço entre os campos */
 }
 
-.input::placeholder{
-    font-family: 'josefin sans medium'
+.input::placeholder {
+    font-family: 'Josefin Sans Medium';
 }
 
-.select{
-    border: 1px solid #ad60a6;
-    border-radius: 5px;
-    padding: 5%;
-    align-self: center;
+.select {
     margin-top: 5%;
-    width: 90% ;
-    padding-right: 5px;
     color: #5e5e5e;
     align-items: center;
-    font-family: 'josefin sans medium';
+    font-family: 'Josefin Sans Medium';
     appearance: none;
-
-}
-
-.select option{
-    padding: 12%;
-    font-size: 120%;
-}
-
-
-.inputTime{
+    width: 90%;
     border: 1px solid #ad60a6;
     border-radius: 5px;
     padding: 5%;
     align-self: center;
-    width: 80% ;
-    margin-top: 4%;
-    color: #5e5e5e;
+    margin: 4% auto; /* Centraliza e dá espaço entre os campos */
+}
+
+.select option {
+    padding: 12%;
+    font-size: 120%;
 }
 
 .eventDescription {
     font-size: 12px;
     padding: 5px;
     border-radius: 5px;
-    max-width: 100%; /* Ajustado para ocupar a largura máxima do elemento pai */
+    max-width: 100%;
+}
+
+
+@media (max-width: 1380px){
+    .component{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Muda a direção para coluna em telas menores */
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr); /* Menos colunas em telas pequenas */
+    }
+
+    .day {
+        min-width: 60px; /* Ajusta a largura mínima */
+    }
+
+    .input,
+    .select,
+    .inputTime {
+        width: 90%; /* Aumenta a largura nos campos */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas muito pequenas */
+    }
+
+    .eventDescription {
+        font-size: 10px; /* Diminui o tamanho da fonte para melhor visualização */
+    }
 }

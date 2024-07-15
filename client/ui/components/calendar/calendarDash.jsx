@@ -1,12 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import styles from './calendardash.module.css'
+import styles from './calendardash.module.css';
+import { useRouter } from 'next/router';
 
 export default function CalendarDash() {
+    const router = useRouter();
+    const { userId, token } = router.query;
+
     const [events, setEvents] = useState({});
 
     useEffect(() => {
-        fetchEvents();
-    }, []);
+
+        if (userId) {
+            const fetchEvents = async () => {
+                try {
+                    // Extrai userId da rota, considerando que pode haver parâmetros adicionais
+                    if (!userId) {
+                        throw new Error('User ID não encontrado na query');
+                    }
+
+                    const response = await fetch(`http://localhost:3333/allUsers/${userId}/events/today`);
+                    if (!response.ok) {
+                        throw new Error('Erro ao buscar eventos');
+                    }
+                    const data = await response.json();
+                    console.log("Eventos recebidos:", data);
+
+                    const formattedEvents = formatEvents(data);
+                    setEvents(formattedEvents);
+                    console.log("Eventos formatados:", formattedEvents);
+                } catch (error) {
+                    console.error('Erro ao buscar eventos:', error.message);
+                }
+            };
+
+            fetchEvents();
+        }
+    }, [userId]);
+
+
 
     const formatEvents = (data) => {
         return data.reduce((acc, event) => {
@@ -19,23 +50,6 @@ export default function CalendarDash() {
         }, {});
     };
 
-    const fetchEvents = async () => {
-        try {
-            const response = await fetch('http://localhost:3333/eventsDay');
-            if (!response.ok) {
-                throw new Error('Erro ao buscar eventos');
-            }
-            const data = await response.json();
-            console.log("Eventos recebidos:", data);
-
-            const formattedEvents = formatEvents(data);
-            setEvents(formattedEvents);
-            console.log("Eventos formatados:", formattedEvents);
-        } catch (error) {
-            console.error('Erro ao buscar eventos:', error.message);
-        }
-    };
-
     return (
         <div className={styles.hoje}>
             <h2>HOJE</h2>
@@ -44,7 +58,9 @@ export default function CalendarDash() {
                     <ul>
                         {events[date].map((event) => (
                             <li key={event.id}>
-                                <strong>{event.description}</strong> - {event.time} - {event.tag}
+                                <div className={styles.lin}>                                
+                                    <strong>{event.description}</strong> <div className={styles.border}></div> {event.time} <div className={styles.border}></div>  {event.tag}
+                                </div>
                             </li>
                         ))}
                     </ul>

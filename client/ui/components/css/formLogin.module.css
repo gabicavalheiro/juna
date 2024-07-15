@@ -1,5 +1,3 @@
-/* ../css/formLogin.module.css */
-
 @font-face {
     font-family: 'Josefin Sans Light';
     src: url('../../../src/josefin/JosefinSans-Light.ttf') format('truetype');
@@ -15,6 +13,23 @@
     src: url('../../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title h1{
+    margin-bottom: 40%;
+    font-size: 190%;
+    margin-top: 15%;
+   margin-left: 50%;
+   
+
+}
+
 .form form {
     display: flex;
     justify-content: center;
@@ -23,27 +38,23 @@
     font-family: 'Josefin Sans Medium', sans-serif;
 }
 
-.formGroup{
+.formGroup {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     margin-left: 35%;
-
-
 }
 
 .formLabel {
-    padding:20px 90px;
+    padding: 20px 90px;
     font-family: 'Josefin Sans Medium', sans-serif;
     color: rgb(255, 255, 255);
     border-radius: 15px;
     border: none;
-  
-   
 }
 
-.formLabel::placeholder{
+.formLabel::placeholder {
     color: #72406f;
     text-align: left;
 }
@@ -60,7 +71,7 @@
 }
 
 .btn {
-    padding: 3% 10%;
+    padding: 1.5% 8%;
     background-color: white;
     color: #BA6DB5;
     border: none;
@@ -93,7 +104,6 @@
     font-size: 55%; /* Ajuste o tamanho da fonte conforme necessário */
 }
 
-
 .remind {
     margin-left: 45%;
     margin-top: 5%;
@@ -122,16 +132,108 @@
     color: #72406f;
 }
 
-
-.formControl{
-    padding:20px 90px;
+.formControl {
+    padding: 20px 90px;
     font-family: 'Josefin Sans Medium', sans-serif;
     color: #72406f;
     border-radius: 15px;
     border: none;
 }
-.formControl::placeholder{
+
+.formControl::placeholder {
     color: #72406f;
-    
 }
 
+
+
+/* Media Queries para tornar responsivo */
+@media (max-width: 1203px) {
+
+    
+    .title h1{
+        margin-left: 0;
+    }
+   
+    .formGroup {
+        margin-left: 0;
+        width: 90%;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2%;
+        font-size: 90%;
+    }
+
+    .formLabel, .formControl {
+        padding: 15px 60px;
+        margin-top: 5%;
+       
+    }
+
+    .btn {
+        position: static;
+        padding: 2% 5%;
+        align-self: flex-end;
+    }
+
+    .formError {
+        margin-left: 0;
+        font-size: 60%;
+    }
+
+    .remind {
+        margin-left: 15%;
+        text-align: center;
+    }
+
+    .eyeButton {
+        left: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .formLabel, .formControl {
+        padding: 10px 50px;
+    }
+
+    .btn {
+        padding: 2% 4%;
+    }
+
+    .formError {
+        font-size: 70%;
+    }
+
+    .label {
+        font-size: 120%;
+    }
+
+    .remind {
+        font-size: 75%;
+    }
+}
+
+@media (max-width: 480px) {
+    .formLabel, .formControl {
+        padding: 5px 30px;
+    }
+
+    .btn {
+        padding: 2% 3%;
+    }
+
+    .formError {
+        font-size: 80%;
+    }
+
+    .label {
+        font-size: 110%;
+    }
+
+    .remind {
+        font-size: 65%;
+    }
+
+    .eyeButton {
+        left: 85%;
+    }
+}

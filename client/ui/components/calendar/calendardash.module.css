@@ -24,8 +24,8 @@
     color: #ad60a6;
     align-self: flex-start;
     margin-left: 5%;
-    margin-top: 8%;
-    margin-bottom: -2%;
+    margin-top: 5%;
+    margin-bottom: 1%;
 }
 
 .hoje ul li{
@@ -35,6 +35,13 @@
     padding-bottom: 5%;
     padding-top: 5%;
     border-bottom: 3px solid #ad60a6;
-    width: 100%;
+    width: 250%;
 
 }
+
+.lin{
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+}
+

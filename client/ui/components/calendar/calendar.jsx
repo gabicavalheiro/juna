@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './calendar.module.css';
 import { FaArrowCircleRight, FaArrowCircleLeft, FaCalendarAlt } from "react-icons/fa";
 import ModalGeneric from '../surfaces/ModalGeneric';
+import { useRouter } from 'next/router';
 
 const tags = {
     "REUNIÃO": { color: "rgb(11, 86, 151)", backgroundColor: "rgb(186, 223, 255)" },
@@ -18,30 +19,49 @@ export const Calendar = () => {
     const [description, setDescription] = useState('');
     const [tag, setTag] = useState('');
     const [time, setTime] = useState('');
+    const [userId, setUserId] = useState(''); // Novo estado para o ID do usuário
+    const [users, setUsers] = useState([]); // Estado para armazenar os usuários
     const [error, setError] = useState('');
-    const [saving, setSaving] = useState(false); // State para controlar o estado de salvamento
+    const [saving, setSaving] = useState(false);
+    const router = useRouter();
+    const { userId: currentUserId } = router.query;
+    const [selectedUserName, setSelectedUserName] = useState('');
 
 
     useEffect(() => {
-        fetchEvents();
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:3333/allUsers');
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar usuários');
+                }
+                const data = await response.json();
+                setUsers(data);
+            } catch (error) {
+                console.error('Erro ao buscar usuários:', error.message);
+            }
+        };
+        fetchUsers();
     }, []);
 
-    const fetchEvents = async () => {
-        try {
-            const response = await fetch('http://localhost:3333/events');
-            if (!response.ok) {
-                throw new Error('Erro ao buscar eventos');
+    useEffect(() => {
+        if (currentUserId) {
+            const fetchEvents = async () => {
+                try {
+                    const response = await fetch(`http://localhost:3333/allUsers/${currentUserId}/events`);
+                    if (!response.ok) {
+                        throw new Error('Erro ao buscar eventos');
+                    }
+                    const data = await response.json();
+                    const formattedEvents = formatEvents(data);
+                    setEvents(formattedEvents);
+                } catch (error) {
+                    console.error('Erro ao buscar eventos:', error.message);
+                }
             }
-            const data = await response.json();
-            console.log("Eventos recebidos:", data);
-
-            const formattedEvents = formatEvents(data);
-            setEvents(formattedEvents);
-            console.log("Eventos formatados:", formattedEvents);
-        } catch (error) {
-            console.error('Erro ao buscar eventos:', error.message);
+            fetchEvents();
         }
-    };
+    }, [currentUserId]);
 
     const formatEvents = (data) => {
         return data.reduce((acc, event) => {
@@ -65,6 +85,7 @@ export const Calendar = () => {
         setDescription('');
         setTag('');
         setTime('');
+        setUserId(''); // Limpar ID do usuário ao abrir o modal
         toggleModal();
     };
 
@@ -74,55 +95,64 @@ export const Calendar = () => {
         setDescription(event.description);
         setTag(event.tag);
         setTime(event.time || '');
+        setUserId(event.userId || ''); // Definir ID do usuário do evento
         toggleModal();
-    };
-    
-    const formatDate = (date) => {
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${year}-${month}-${day}`;
     };
 
     const handleSave = async () => {
-        if (!description || !tag || !time || !selectedDay) {
+        if (!description || !tag || !time || !selectedDay || !userId) {
             setError('Todos os campos são obrigatórios!');
             return;
         }
 
         const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}`;
 
+        // Converte userId para número, se necessário
+        const selectedUser = users.find(user => user.id === Number(userId)); // Certifique-se de comparar corretamente
+        const userName = selectedUser ? selectedUser.nome : '';
+
+        const finalDescription = `${description}`;
+
         try {
-            const response = await fetch('http://localhost:3333/events', {
+            const response = await fetch(`http://localhost:3333/allUsers/${currentUserId}/events`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    description,
+                    description: finalDescription,
                     tag,
                     time,
-                    eventDate: formattedDate
+                    eventDate: formattedDate,
+                    userId: Number(userId), // Converta para número aqui, se necessário
+                    adminUserId: currentUserId // ID do administrador da rota
                 })
             });
+
             if (!response.ok) {
                 throw new Error('Erro ao salvar evento. Por favor, tente novamente.');
             }
 
-            // Atualiza os eventos após salvar com sucesso
-            fetchEvents();
+            const newEvent = await response.json();
+            setEvents(prev => ({
+                ...prev,
+                [formattedDate]: [...(prev[formattedDate] || []), newEvent],
+            }));
 
+            // Resetando os campos após salvar
             setDescription('');
             setTag('');
             setTime('');
+            setUserId('');
             toggleModal();
         } catch (error) {
             console.error('Erro ao salvar evento:', error);
             setError('Erro ao salvar evento. Por favor, tente novamente.');
-        } finally {
-            setSaving(false); // Desativar o estado de salvamento
         }
     };
+
+
+
     const handleRemove = async () => {
         if (selectedEventIndex === null || !selectedDay) {
             return;
@@ -140,6 +170,7 @@ export const Calendar = () => {
                 throw new Error('Erro ao remover evento. Por favor, tente novamente.');
             }
     
+            // Remover o evento do estado local
             setEvents(prevEvents => {
                 const updatedEvents = { ...prevEvents };
                 updatedEvents[eventDateKey].splice(selectedEventIndex, 1);
@@ -149,9 +180,6 @@ export const Calendar = () => {
                 return updatedEvents;
             });
     
-            setDescription('');
-            setTag('');
-            setTime('');
             toggleModal();
         } catch (error) {
             console.error('Erro ao remover evento:', error);
@@ -178,6 +206,7 @@ export const Calendar = () => {
 
     return (
         <div className={styles.calendar}>
+            <div className={styles.component}></div>
             <div className={styles.header}>
                 <button className={styles.pass} style={{ border: 'none', backgroundColor: '#ffff' }} onClick={() => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)))}>
                     <FaArrowCircleLeft style={{ color: '#ad60a6', cursor: "pointer" }} size={25} />
@@ -199,13 +228,19 @@ export const Calendar = () => {
                         {day !== null && (
                             <div>
                                 <span onClick={() => openModalForDay(day)}>{day}</span>
-                                {events[`${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`]?.map((event, idx) => (
-                                    <div key={idx} className={styles.event} onClick={() => openModalForEvent(day, idx, event)}>
-                                        <div className={styles.eventDescription} style={{ backgroundColor: tags[event.tag].backgroundColor, color: tags[event.tag].color }}>
-                                            <strong>{event.time}</strong> - {event.description}
+                                {events[`${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`]?.map((event, idx) => {
+                                    const selectedUser = users.find(user => user.id === event.userId); // Certifique-se que event.userId é do tipo correto
+                                    const userName = selectedUser ? selectedUser.nome : 'Usuário não encontrado';
+
+                                    return (
+                                        <div key={idx} className={styles.event} onClick={() => openModalForEvent(day, idx, event)}>
+                                            <div className={styles.eventDescription} style={{ backgroundColor: tags[event.tag].backgroundColor, color: tags[event.tag].color }}>
+                                                <strong>{event.time}</strong> - {event.description} - {userName}
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
+
                             </div>
                         )}
                     </div>
@@ -239,6 +274,19 @@ export const Calendar = () => {
                     onChange={(e) => setTime(e.target.value)}
                     className={styles.inputTime}
                 />
+
+
+
+                <select value={userId} onChange={(e) => setUserId(e.target.value)} className={styles.select}>
+                    <option value="">Selecione um usuário</option>
+                    {users.map((user) => (
+                        <option key={user.id} value={user.id}>
+                            {user.nome}
+                        </option>
+                    ))}
+                </select>
+
+
                 {error && <p className={styles.error}>{error}</p>}
             </ModalGeneric>
         </div>

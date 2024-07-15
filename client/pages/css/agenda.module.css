@@ -1,3 +1,4 @@
+/* agenda.module.css */
 @font-face {
     font-family: 'Josefin Sans Light';
     src: url('../../src/josefin/JosefinSans-Light.ttf') format('truetype');
@@ -13,44 +14,80 @@
     src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
-.agenda{
+.agenda {
     display: flex;
-    flex-direction: row;
+    transition: margin-left 0.3s ease; /* Para uma animação suave */
 }
 
-.calendar{
+.menuOpen .calendar {
+    margin-left: 0; /* Ajuste conforme a largura do seu menu aberto */
+}
+
+.menuClosed .tags {
+    margin-left: -40%; /* O conteúdo ocupa todo o espaço quando o menu está fechado */
+}
+
+.calendar {
+    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço restante */
     display: flex;
     flex-direction: row;
     gap: 3%;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 2%;;
+    margin-top: 2%;
+    transition: margin-left 0.3s ease; /* Transição suave */
 }
 
-.tags{
-    width: 55%;
+.tags {
+    width: 30%;
     height: 25%;
     background: #fff;
     border-radius: 15px;
-    box-shadow: 1px 1px 2px 1px rgba(179, 179, 179, 0.2); ;
+    box-shadow: 1px 1px 2px 1px rgba(179, 179, 179, 0.2);
+    
 
 }
-.tags h2{
+
+.tags h2 {
     font-family: 'Josefin Sans Medium';
     color: #ad60a6;
     margin-left: 5%;
 }
 
-.tags ul li{
+.tags ul li {
     font-family: 'Josefin Sans Light';
     margin-top: 2%;
     list-style-type: none;
+    
+
 }
 
-.calendario{
+.calendario {
     width: 900px;
     height: 600px;
     background: #fff;
     border-radius: 15px;
-    box-shadow: 1px 1px 2px 1px rgba(179, 179, 179, 0.2); ;
+    box-shadow: 1px 1px 2px 1px rgba(179, 179, 179, 0.2);
+}
+
+/* Ajuste da direção do layout em telas menores */
+@media (max-width: 1380px) {
+    .calendar {
+        display: flex;
+        flex-direction: column;
+    }
+  
+
+    .menuClosed .tags  {
+        margin-left: -10%; /* O conteúdo ocupa todo o espaço quando o menu está fechado */
+    }
+
+    .calendario{
+        margin-left: -15%;
+    }
+
+    .menuOpen .calendario, .menuOpen .tags{
+        margin-left: 0%;
+    }
+
 }
