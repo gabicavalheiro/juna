@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function MenuItem({ href, activeLink, onClick, children }) {
     const router = useRouter();
-    const { usuarioId, token } = router.query;
+    const { userId, token } = router.query;
 
     // State para controlar o link ativo
     const [isActive, setIsActive] = useState(false);
@@ -22,7 +22,7 @@ export default function MenuItem({ href, activeLink, onClick, children }) {
     };
 
     return (
-        <Link style={{textDecoration:'none'}} href={`${href}/[usuarioId]/[token]`} as={`${href}/${usuarioId}/${token}`} passHref>
+        <Link style={{textDecoration:'none'}} href={`${href}/${userId}/${token}`} passHref>
             <div
                 className={`${styles.link} ${isActive ? styles.active : ''}`}
                 onClick={handleLinkClick}
