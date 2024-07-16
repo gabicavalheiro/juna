@@ -2,6 +2,9 @@
 
 Este projeto é uma aplicação web desenvolvida para a organização da agenda de influenciadores digitais, visando facilitar a gestão de publicações, roteiros e informações importantes para suas atividades online.
 
+
+![image](https://github.com/user-attachments/assets/cf9ec9e0-9cdb-4eee-93bb-31e1c5471faf)
+
 ## Tecnologias Utilizadas
 
 - **Frontend:**
