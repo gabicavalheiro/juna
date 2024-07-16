@@ -63,5 +63,5 @@ https://github.com/gabicavalheiro/juna
    git clone https://github.com/seu-usuario/nome-do-repositorio.git
    cd nome-do-repositorio
 
-2. npm i
-3. npx nodemon app
+2. ```npm i
+3. ```npx nodemon app
