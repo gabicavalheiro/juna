@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Influencer Agenda Organizer
 
-## Getting Started
+Este projeto é uma aplicação web desenvolvida para a organização da agenda de influenciadores digitais, visando facilitar a gestão de publicações, roteiros e informações importantes para suas atividades online.
 
-First, run the development server:
+## Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Frontend:**
+  - React
+  - JavaScript
+  - Bootstrap
+  
+- **Backend:**
+  - Node.js com Express
+  - Sequelize (ORM para interação com o banco de dados)
+  - Bcrypt (para criptografia de senhas)
+  
+- **Framework:**
+  - Next.js (para renderização do lado do servidor e roteamento)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Agenda:**
+  - Gerenciamento de compromissos e eventos importantes.
+  - Visualização de atividades agendadas por dia, semana e mês.
+  
+- **Publicações:**
+  - Cadastro e gerenciamento de publicações em diferentes plataformas.
+  - Agendamento de posts e análise de desempenho.
+  
+- **Informações:**
+  - Armazenamento seguro de dados importantes como contatos, contratos e briefings.
+  - Acesso rápido a informações relevantes para parcerias e colaborações.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Organização de Roteiro:**
+  - Planejamento e estruturação de conteúdo para vídeos, posts e campanhas.
+  - Criação de cronogramas detalhados para produção de conteúdo.
 
-## Learn More
+## Como Executar o Projeto
 
-To learn more about Next.js, take a look at the following resources:
+### Pré-requisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js e npm (ou yarn) instalados na sua máquina.
+- Banco de dados configurado (PostgreSQL, MySQL, etc.).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Instalação
 
-## Deploy on Vercel
+1. **Clonar o repositório:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   cd nome-do-repositorio
