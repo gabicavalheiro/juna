@@ -1,0 +1,78 @@
+/* Estilos gerais */
+@font-face {
+    font-family: 'Josefin Sans Light';
+    src: url('../../src/josefin/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Josefin Sans Bold';
+    src: url('../../src/josefin/JosefinSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Josefin Sans Medium';
+    src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
+}
+
+
+
+.img img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+}
+
+
+.home{
+    background-color: #c67acc;
+}
+.nav{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: row;
+    gap: 5%;
+    margin-right: 5%;
+    font-family: 'josefin sans medium';
+}
+
+.nav a{
+    text-decoration: none;
+    color: white;
+    background-color: #a75aa1;
+    padding: 2% 2%;
+    border-radius: 15px;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 17%;
+    margin-left: 20%;
+    font-family: 'josefin sans medium'
+    
+}
+
+
+.main h1{
+    font-size: 350%;
+    color: #a75aa1;
+}
+
+
+.btn button{
+    color: white;
+    background-color: #a75aa1;
+    padding: 8% 15%;
+    border-radius: 15px;
+    border: 1px solid #a75aa1;
+    font-family: 'josefin sans medium';
+    
+}
+
+.btn{
+    width: 250px;
+}

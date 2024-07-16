@@ -3,22 +3,30 @@ import styles from './calendardash.module.css';
 import { useRouter } from 'next/router';
 
 export default function CalendarDash() {
+    const [userId, setUserId] = useState(''); // Estado para armazenar o ID do usuário selecionado
+
     const router = useRouter();
-    const { userId, token } = router.query;
+    const { userId: adminId } = router.query; // Extrai userId da rota
+
+    useEffect(() => {
+        if (adminId) {
+            setUserId(adminId); // Define userId como adminId da rota
+        }
+    }, [adminId]);
 
     const [events, setEvents] = useState({});
 
     useEffect(() => {
 
-        if (userId) {
+        if (adminId) {
             const fetchEvents = async () => {
                 try {
                     // Extrai userId da rota, considerando que pode haver parâmetros adicionais
-                    if (!userId) {
+                    if (!adminId) {
                         throw new Error('User ID não encontrado na query');
                     }
 
-                    const response = await fetch(`http://localhost:3333/allUsers/${userId}/events/today`);
+                    const response = await fetch(`http://localhost:3333/admin/${adminId}/events/day`);
                     if (!response.ok) {
                         throw new Error('Erro ao buscar eventos');
                     }
@@ -35,7 +43,7 @@ export default function CalendarDash() {
 
             fetchEvents();
         }
-    }, [userId]);
+    }, [adminId]);
 
 
 
@@ -59,7 +67,8 @@ export default function CalendarDash() {
                         {events[date].map((event) => (
                             <li key={event.id}>
                                 <div className={styles.lin}>                                
-                                    <strong>{event.description}</strong> <div className={styles.border}></div> {event.time} <div className={styles.border}></div>  {event.tag}
+                                    <strong>{event.description}</strong> <div className={styles.border}></div> {event.time} <div className={styles.border}></div>  {event.tag} <div className={styles.border}></div>
+                                    <strong> {event.usuario?.nome.toUpperCase()} </strong>
                                 </div>
                             </li>
                         ))}

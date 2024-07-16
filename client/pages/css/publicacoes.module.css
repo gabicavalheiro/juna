@@ -1,0 +1,286 @@
+/* Estilos gerais */
+@font-face {
+    font-family: 'Josefin Sans Light';
+    src: url('../../src/josefin/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Josefin Sans Bold';
+    src: url('../../src/josefin/JosefinSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Josefin Sans Medium';
+    src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
+}
+
+.menuOpen .content {
+    margin-left: 0; /* Ajuste conforme a largura do seu menu aberto */
+}
+
+.menuClosed .content {
+    margin-left: 0%; /* O conteúdo ocupa todo o espaço quando o menu está fechado */
+}
+
+.publicacoes {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    font-family: 'Josefin Sans Medium';
+    margin-top: 2%;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: -10%;
+    gap: 5%;
+  
+    
+}
+
+.title h1 {
+    color: #a75aa1;
+     
+    width: 100%;  
+
+   
+}
+
+.filter {
+    border: 1.5px solid #a75aa1;
+    padding: 10px 10px;
+    border-radius: 15px;
+    background-color: #a75aa1;
+    color: #fff;
+    width: 500px;
+    position: relative;
+    
+}
+
+.select {
+    border: 1px solid #a75aa1;
+    border-radius: 10px;
+    margin-left: 15%;
+    color: #a75aa1;
+    background: #fff;
+    font-family: 'Josefin Sans Medium';
+    font-size: medium;
+    padding: 9px 15px;
+    position: absolute;
+    top: -3%;
+    right: -1px;
+}
+
+.publi{
+    margin-top: 15%;
+}
+.posts {
+    display: flex;
+    flex-direction: row; /* Alinha os cards horizontalmente */
+    flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha */
+    gap: 20px; /* Espaçamento entre os cards */
+}
+
+.post {
+    width: 300px;
+    height: 400px;
+    border: 1px solid #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(120, 120, 120, 0.1);
+    margin-bottom: 20px; /* Espaçamento inferior entre os cards */
+}
+
+
+.images img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.userImage {
+    border-radius: 100%;
+    width: 20%;
+    height: 10%;
+    align-self: flex-end;
+    margin-left: 10%; 
+}
+
+.content1 .data {
+    padding: 3%;
+    width: 40%;
+    margin-top: -2%;
+    background-color: #fff;
+    color: #a75aa1;
+    border-radius: 15px;
+}
+
+.content1 h3 {
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+.content1 {
+    background-color: #a75aa1;
+    padding: 5% 10%;
+    border-radius: 15px;
+    color: #fff;
+    text-align: center;
+}
+
+.content2 .descricao {
+    text-align: center;
+    margin-top: 15%;
+    color: #a75aa1;
+}
+.title:hover{
+    cursor: pointer;
+    color: #350531;
+}
+
+.icons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-top: 30%;
+    margin-top: 40% ;
+    margin-right: 10%;
+}
+
+.userInfo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.userInfo p {
+    margin-bottom: 0;
+    align-self: center;
+}
+
+.deleteButton{
+    position: absolute;
+    border: none;
+    border-radius: 15px;
+    margin-left: 5%;
+    color: #fb0000;
+    font-size: 150%;
+    margin-right: -4%;
+    background-color: #fff;
+    margin-top: 10%;
+}
+
+.addButton button{
+    border: none;
+    background-color: #fff;
+    color: #18b500;
+    font-size: 200%
+}
+
+
+.form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.form label{
+    margin-top: 3%;
+    color: #a75aa1;
+}
+
+
+
+.input {
+    border: 1px solid #ad60a6;
+    border-radius: 5px;
+    padding: 5%;
+    align-self: center;
+    width: 80%;
+    margin: 4% auto; /* Centraliza e dá espaço entre os campos */
+}
+
+.input::placeholder {
+    font-family: 'Josefin Sans Medium';
+}
+
+
+.form select {
+    margin-top: 5%;
+    color: #5e5e5e;
+    align-items: center;
+    font-family: 'Josefin Sans Medium';
+    appearance: none;
+    width: 90%;
+    border: 1px solid #ad60a6;
+    border-radius: 5px;
+    padding: 5%;
+    align-self: center;
+    margin: 4% auto; /* Centraliza e dá espaço entre os campos */
+}
+
+.form select option {
+    padding: 12%;
+    font-size: 120%;
+}
+
+
+.modalPost{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    color: #a75aa1;
+    font-family: 'Josefin Sans Medium';
+    font-weight: 600;
+}
+
+
+.imagensM img{
+    width: 50%;
+    height: 50%;
+}
+
+.modalPost p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5%;
+    width: 100%;
+}
+
+.modalPost h3{
+    background-color: #a75aa1;
+    color: #fff;
+    padding: 2%;
+    border-radius: 15px;
+}
+
+/* Media queries para telas menores */
+
+@media (max-width: 768px) {
+    .posts {
+        flex-direction: column; /* Altera para coluna em telas menores */
+    }
+
+    .post {
+        flex: 1 1 100%; /* Ocupa 100% da largura disponível */
+        max-width: 100%; /* Largura máxima de 100% */
+    }
+
+    .userImage {
+        width: 30%; /* Reduz o tamanho da imagem de perfil */
+        margin-left: 5%; /* Ajusta o espaçamento à esquerda */
+    }
+
+    .content1 .data {
+        width: 100%; /* Ocupa 100% da largura disponível */
+    }
+}

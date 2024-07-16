@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, { useEffect, useState } from 'react';
 import styles from './css/menu.module.css';
@@ -13,6 +13,8 @@ export default function Menu({ isOpen, toggleMenu }) {
     const [activeLink, setActiveLink] = useState('');
     const [imageSrc, setImageSrc] = useState('');
 
+
+    console.log("idd" + userId)
     const handleLinkClick = (link) => {
         setActiveLink(link);
         
@@ -23,11 +25,34 @@ export default function Menu({ isOpen, toggleMenu }) {
     };
 
     useEffect(() => {
-        const savedImageUrl = localStorage.getItem('savedImageUrl');
-        if (savedImageUrl) {
-            setImageSrc(savedImageUrl);
+        const fetchUserProfile = async () => {
+            try {
+                const response = await fetch(`http://localhost:3333/usuarios/${userId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Falha ao buscar perfil do usuário');
+                }
+
+                const data = await response.json();
+                if (data.imagemPerfil) {
+                    setImageSrc(data.imagemPerfil);
+                } else {
+                    setImageSrc('default-image-url'); // Defina uma URL padrão para a imagem de perfil
+                }
+            } catch (error) {
+                console.error('Erro ao buscar perfil do usuário:', error);
+                // Tratar o erro conforme necessário
+            }
+        };
+
+        if (userId && token) {
+            fetchUserProfile();
         }
-    }, []);
+    }, [userId, token]);
 
     const handleImageChange = (event) => {
         const files = event.target.files;
@@ -36,7 +61,7 @@ export default function Menu({ isOpen, toggleMenu }) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImageSrc(reader.result);
-                localStorage.setItem('savedImageUrl', reader.result);
+                // Salvar imagem no localStorage se necessário
             };
             reader.readAsDataURL(file);
         }
@@ -84,12 +109,7 @@ export default function Menu({ isOpen, toggleMenu }) {
                     >
                         AGENDA
                     </MenuItem>
-                    <MenuItem  href={"/metas"}
-                        className={styles.link}
-                        activeLink={activeLink}
-                        onClick={() => handleLinkClick(`/metas/${userId}/${token}`)}>
-                        METAS
-                    </MenuItem>
+                   
                     <MenuItem  href={"/Publicacoes"}
                         className={styles.link}
                         activeLink={activeLink}

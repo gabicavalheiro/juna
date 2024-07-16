@@ -306,3 +306,22 @@
     font-family: 'Josefin Sans Medium', sans-serif;
     color: #72406f;
 }
+
+
+.logar{
+    border-radius: 15px;
+    padding: 2% 10%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #BA6DB5;
+    border: none;
+}
+
+.logar a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.logar:hover{
+    background-color: #72406f;
+}

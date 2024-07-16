@@ -1,0 +1,103 @@
+/* Estilos gerais */
+@font-face {
+    font-family: 'Josefin Sans Light';
+    src: url('../../src/josefin/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Josefin Sans Bold';
+    src: url('../../src/josefin/JosefinSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Josefin Sans Medium';
+    src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
+}
+
+.userPhoto{
+    width: 30%;
+    border-radius: 100%;
+    margin-left: -5%;
+    margin-right: 5%;
+}
+
+.influenciadores{
+    display: flex;
+    flex-direction: row;
+}
+
+.influ{
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+
+.card{
+    max-width: 700px;
+    height: auto;
+    box-shadow: 1px 1px 2px 2px #ccc;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    padding: 5% 15%;
+    font-family: 'josefin sans medium';
+    color: #a75aa1;
+    
+
+}
+
+.infoButton{
+    border: none;
+    padding: 4% 0%;
+    background: #2c9619;
+    color: #fff;
+    border-radius: 15px;
+    font-family: 'josefin sans medium';
+    width: 150%;
+    
+}
+
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #a75aa1;
+    font-family: 'Josefin Sans Medium';
+    font-weight: 600;
+}
+
+
+.modal textarea, .modal input{
+    border-radius: 15px;
+    margin-top: 2%;
+    height: 60px;
+    width: 400px;
+    border: 1px solid #ccc;
+    
+}
+
+
+
+
+ .input {
+    padding-left: 5%;
+    font-family: 'Josefin Sans Medium';
+}
+
+.input::placeholder{
+    font-family: 'Josefin Sans Medium';
+    padding-top: 5%;
+
+}
+
+
+.descr{
+    margin-top: 5%;
+    color: rgb(9, 96, 1);
+    list-style: circle;
+}

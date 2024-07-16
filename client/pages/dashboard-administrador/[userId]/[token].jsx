@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../css/dashAdmin.module.css';
 import Menu from '../../../ui/components/surfaces/menu';
 import CalendarDash from '../../../ui/components/calendar/calendarDash';
+import ProximaPublicacao from '../../../ui/components/proxPub';
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -81,8 +82,11 @@ export default function AdminDashboard() {
                 </div>
     
                 <div className={styles.line}>
-                    <div className={styles.metas}></div>
-                    <div className={styles.post}></div>
+                    <div >
+                        <div>
+                            <ProximaPublicacao />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './css/modalG.module.css';
 
-const ModalGeneric = ({ show, onClose, title, children, onConfirm, onRemove, confirmText = "Save", cancelText = "Cancel", removeText = "Remove" }) => {
+const ModalGeneric = ({
+  show,
+  onClose,
+  title,
+  children,
+  onConfirm,
+  onRemove,
+  confirmText = "Save",
+  cancelText = "Cancel",
+  removeText = "Remove",
+  onSubmit // Função de submit que será chamada no botão de submit
+}) => {
   if (!show) {
     return null;
   }
@@ -12,7 +23,7 @@ const ModalGeneric = ({ show, onClose, title, children, onConfirm, onRemove, con
         <button onClick={onClose} className={styles.closeButton}>
           &times;
         </button>
-        <h2>{title}</h2>
+        <h2 className={styles.title}>{title}</h2>
         <div className={styles.modalBody}>
           {children}
         </div>
@@ -22,9 +33,16 @@ const ModalGeneric = ({ show, onClose, title, children, onConfirm, onRemove, con
               {removeText}
             </button>
           )}
-        
-          <button onClick={onConfirm} className={styles.confirmButton}>
-            {confirmText}
+
+
+          {onSubmit && ( // Adiciona o botão de submit se a função onSubmit estiver definida
+            <button onClick={onSubmit} className={styles.confirmButton}>
+              Submit
+            </button>
+          )}
+
+          <button onClick={onClose} className={styles.cancelButton}>
+            {cancelText}
           </button>
         </div>
       </div>

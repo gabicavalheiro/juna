@@ -23,12 +23,14 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-top: 5%;
 
 }
 .saudacoes{
     font-family: 'Josefin Sans Medium';
     font-size: 150%;
     color: #a75aa1;
+    
 }
 
 .saudacoes p{
@@ -45,16 +47,17 @@
     align-items: flex-start;
     justify-content: flex-start;
     margin-left: 5%;
+    
 
 }
 
 .agenda{
     margin-top: 5%;
     width: 700px;
-    height: 300px;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 6px 6px 6px 6px rgb(242, 239, 240);
+    margin-bottom: -12%;
 }
 
 .line{

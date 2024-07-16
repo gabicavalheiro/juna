@@ -1,0 +1,63 @@
+
+@font-face {
+    font-family: 'Josefin Sans Light';
+    src: url('../../src/josefin/JosefinSans-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Josefin Sans Bold';
+    src: url('../../src/josefin/JosefinSans-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Josefin Sans Medium';
+    src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
+}
+
+
+.proximaPublicacao{
+    padding: 5%;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 2px 2px #eee;
+    width: 650px;
+    border-radius: 15px;
+    font-family: 'josefin sans medium';
+    margin-bottom: 2%;
+}
+
+
+.proximaPublicacao h2{
+    color: #a75aa1
+}
+
+.publicacao{
+    display: flex;
+    flex-direction: row;
+    gap: 50%;
+}
+
+.titulo{
+    background-color: #a75aa1;
+    color: #fff;
+    text-align: center;
+    padding: 80%;
+    border-radius: 15px;
+    width: 120%;
+}
+
+.data{
+    position: absolute;
+    top: 77%;
+    background-color: #fff;
+    padding: 0.5%;
+    color: #a75aa1;
+    margin-left: 1%;
+    border-radius: 15px;
+
+}
+
+.lateral{
+    color: #a75aa1;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+}

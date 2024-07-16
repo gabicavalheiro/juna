@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import { Eye, EyeOff } from 'lucide-react';
 import { FaCaretDown } from 'react-icons/fa';
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { useNavigate } from 'react-router-dom'; // Importe useNavigate para redirecionamento
+
 
 import styles from '../css/formCadastroAdm.module.css';
 
@@ -14,6 +16,7 @@ export default function FormCadastro() {
         senhaConfirmacao: '',
         role: '',
         username: '',
+        imagemPerfil: '',
     };
 
     const [isShow, setIsShow] = useState(false);
@@ -23,6 +26,7 @@ export default function FormCadastro() {
     const [showGeneralError, setShowGeneralError] = useState(false);
     const [showModal, setShowModal] = useState(false); // Novo estado para controlar o modal
     const [errorMessage, setErrorMessage] = useState(''); // Novo estado para mensagens de erro
+
 
     const handlePassword = () => setIsShow(!isShow);
 
@@ -122,6 +126,7 @@ export default function FormCadastro() {
                 console.log('Formulário enviado com sucesso!');
                 setShowModal(true); // Exibir o modal em caso de sucesso
                 setErrorMessage(''); // Limpar mensagem de erro em caso de sucesso
+                
             } else {
                 console.error('Erro ao enviar o formulário:', response.statusText);
                 setErrorMessage('Erro ao enviar o formulário: ' + response.statusText);
@@ -267,6 +272,19 @@ export default function FormCadastro() {
                             </div>
                         )}
 
+                         {/* Novo campo para URL da imagem de perfil */}
+                         <div className={`${styles.formGroup} form-group`}>
+                            <label htmlFor="imagemPerfil" className={styles.label}>Sua foto</label>
+                            <input
+                                type="text"
+                                className={`${styles.formControl} ${styles.formLabel} ${formik.touched.imagemPerfil && formik.errors.imagemPerfil ? styles.invalidInput : ''}`}
+                                id="imagemPerfil"
+                                name="imagemPerfil"
+                                placeholder="URL da Imagem de Perfil"
+                                {...formik.getFieldProps('imagemPerfil')}
+                            />
+                        </div>
+
                         <button type="submit" className={`${styles.btn} btn`}><strong>Cadastrar</strong></button>
                     </form>
 
@@ -274,11 +292,13 @@ export default function FormCadastro() {
                     {showModal && (
                         <div className={styles.modal} style={{ display: 'flex' }}>
                             <div className={styles.modalContent}>
-                                <span className={styles.closeButton} onClick={closeModal}>&times;</span>
+                                <span className={styles.closeButton} onClick={closeModal} >&times;</span>
                                 <p className={styles.modalText}>Cadastro concluído com sucesso!</p>
+                                <button className={styles.logar}> <a href="/Login"> Logar</a></button>
                             </div>
                         </div>
                     )}
+                     
                 </div>
             )}
         </Formik>
