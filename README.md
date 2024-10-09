@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-# Influencer Agenda Organizer
 
-Este projeto é uma aplicação web desenvolvida para a organização da agenda de influenciadores digitais, visando facilitar a gestão de publicações, roteiros e informações importantes para suas atividades online.
 
-=======
 # Influencer Agenda Organizer - JUNA INFLUENCIA
 
 Este projeto é uma aplicação web desenvolvida para a organização da agenda de influenciadores digitais, visando facilitar a gestão de publicações, roteiros e informações importantes para suas atividades online.
@@ -11,7 +7,6 @@ Este projeto é uma aplicação web desenvolvida para a organização da agenda 
 
 ![image](https://github.com/user-attachments/assets/cf9ec9e0-9cdb-4eee-93bb-31e1c5471faf)
 
->>>>>>> c845e35336a3b0120fec897ee3a2172f008f3a64
 ## Tecnologias Utilizadas
 
 - **Frontend:**
@@ -59,8 +54,6 @@ Este projeto é uma aplicação web desenvolvida para a organização da agenda 
    ```bash
    git clone https://github.com/seu-usuario/nome-do-repositorio.git
    cd nome-do-repositorio
-<<<<<<< HEAD
-=======
 
 
 2. **Rodar a aplicação**
@@ -68,18 +61,3 @@ Este projeto é uma aplicação web desenvolvida para a organização da agenda 
 
 **A API**
 https://github.com/gabicavalheiro/juna
-
-1. **Clonar o repositório:**
-
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
-
-2. **Instalação das dependencias**
-    ```
-   npm i
-
-3. **Rodar a aplicação**
-  ```
-npx nodemon app
->>>>>>> c845e35336a3b0120fec897ee3a2172f008f3a64

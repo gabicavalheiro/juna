@@ -21,13 +21,27 @@
     flex-direction: column;
 }
 
-.title h1{
+
+.title h1 {
+    animation-duration: 1s; /* Duração da animação */
+    animation-timing-function: ease-in-out; /* Suavidade na animação */
+    animation-fill-mode: forwards; /* Mantém a posição final após a animação */
+    animation-name: slideInLeft; /* Nome da animação */
     margin-bottom: 40%;
     font-size: 190%;
     margin-top: 15%;
    margin-left: 50%;
-   
+}
 
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%); /* Começa fora da tela, à esquerda */
+        opacity: 0; /* Inicia invisível */
+    }
+    100% {
+        transform: translateX(0); /* Vai para a posição original */
+        opacity: 1; /* Fica visível */
+    }
 }
 
 .form form {
@@ -55,7 +69,7 @@
 }
 
 .formLabel::placeholder {
-    color: #72406f;
+    color: #252525;
     text-align: left;
 }
 
@@ -73,7 +87,7 @@
 .btn {
     padding: 1.5% 8%;
     background-color: white;
-    color: #BA6DB5;
+    color: #252525;
     border: none;
     position: absolute;
     left: 63%;
@@ -114,7 +128,7 @@
 
 .remind a {
     text-decoration: none;
-    color: #72406f;
+    color: #989898;
     font-weight: bold;
 }
 
@@ -129,19 +143,19 @@
     transform: translateY(-50%);
     background-color: #fff;
     border: none;
-    color: #72406f;
+    color: #252525;
 }
 
 .formControl {
     padding: 20px 90px;
     font-family: 'Josefin Sans Medium', sans-serif;
-    color: #72406f;
+    color: #252525;
     border-radius: 15px;
     border: none;
 }
 
 .formControl::placeholder {
-    color: #72406f;
+    color: #252525;
 }
 
 

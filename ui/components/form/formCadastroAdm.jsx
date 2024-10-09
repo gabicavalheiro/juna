@@ -83,7 +83,7 @@ export default function FormCadastro() {
             newInvalidFields.role = true;
         }
         if (values.senha !== values.senhaConfirmacao) {
-            errors.senhaConfirmacao = 'As senhas não correspondem';
+            errors.senhaConfirmacao = 'AS SENHAS NÃO CORRESPONDEM!';
         }
         if (!validaSenha(values.senha)) {
             errors.senha = 'A senha deve conter pelo menos uma letra maiúscula, uma minúscula, um número e um símbolo.';
@@ -126,7 +126,7 @@ export default function FormCadastro() {
                 console.log('Formulário enviado com sucesso!');
                 setShowModal(true); // Exibir o modal em caso de sucesso
                 setErrorMessage(''); // Limpar mensagem de erro em caso de sucesso
-                
+
             } else {
                 console.error('Erro ao enviar o formulário:', response.statusText);
                 setErrorMessage('Erro ao enviar o formulário: ' + response.statusText);
@@ -230,19 +230,19 @@ export default function FormCadastro() {
 
                         <div className={`${styles.formGroup} form-group`}>
                             <div className={styles.usuario}>
-                            <label htmlFor="userRole" className={styles.label}>Usuário:</label>
-                            <div className={styles.dropdown}>
-                                <div className={`${styles.dropdown_input} ${formik.touched.role && formik.errors.role ? styles.invalidInput : ''}`} onClick={toggleDropdown}>
-                                    <span>{role || 'Selecione o papel'}</span>
-                                    <FaCaretDown className={styles.dropdown_icon} />
-                                </div>
-                                {isOpen && (
-                                    <div className={styles.dropdown_menu}>
-                                        <div className={styles.dropdown_item} onClick={() => handleSelect('Administrador')}>Administrador</div>
-                                        <div className={styles.dropdown_item} onClick={() => handleSelect('Cliente')}>Cliente</div>
+                                <label htmlFor="userRole" className={styles.label}>Usuário:</label>
+                                <div className={styles.dropdown}>
+                                    <div className={`${styles.dropdown_input} ${formik.touched.role && formik.errors.role ? styles.invalidInput : ''}`} onClick={toggleDropdown}>
+                                        <span>{role || 'Selecione o papel'}</span>
+                                        <FaCaretDown className={styles.dropdown_icon} />
                                     </div>
-                                )}
-                            </div>
+                                    {isOpen && (
+                                        <div className={styles.dropdown_menu}>
+                                            <div className={styles.dropdown_item} onClick={() => handleSelect('Administrador')}>Administrador</div>
+                                            <div className={styles.dropdown_item} onClick={() => handleSelect('Cliente')}>Cliente</div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
@@ -259,10 +259,40 @@ export default function FormCadastro() {
                                 />
                             </div>
                         )}
+                        {/* Campo para upload da imagem de perfil */}
+                        <div className={`${styles.formGroup} form-group`}>
+                            <label htmlFor="imagemPerfil" className={styles.label}>Sua foto</label>
+                            <input
+        type="file"
+        id="imagemPerfil"
+        name="imagemPerfil"
+        accept="image/*"
+        className={styles.hiddenInput} // Esconde o input padrão
+        onChange={(event) => {
+            const file = event.currentTarget.files[0];
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                formik.setFieldValue('imagemPerfil', imageUrl);
+            }
+        }}
+    />
+
+    {/* Botão estilizado que abre o seletor de arquivo */}
+    <label htmlFor="imagemPerfil" className={styles.customFileButton}>
+        Escolher arquivo
+    </label>
+
+    {/* Exibe o nome do arquivo selecionado */}
+    {formik.values.imagemPerfil && <span className={styles.fileName}>Arquivo: {formik.values.imagemPerfil}</span>}
+
+                        </div>
+
+
+                        <button type="submit" className={`${styles.btn} btn`}><strong>Cadastrar</strong></button>
 
                         {showGeneralError && (
                             <div className={styles.errorBox}>
-                                <span className={`${styles.formError} form-error`}>Todos os itens são obrigatórios</span>
+                                <span className={`${styles.formError} form-error`}>TODOS OS ITENS SÃO OBRIGATÓRIOS!</span>
                             </div>
                         )}
 
@@ -271,21 +301,6 @@ export default function FormCadastro() {
                                 <span className={`${styles.formError} form-error`}>{errorMessage}</span>
                             </div>
                         )}
-
-                         {/* Novo campo para URL da imagem de perfil */}
-                         <div className={`${styles.formGroup} form-group`}>
-                            <label htmlFor="imagemPerfil" className={styles.label}>Sua foto</label>
-                            <input
-                                type="text"
-                                className={`${styles.formControl} ${styles.formLabel} ${formik.touched.imagemPerfil && formik.errors.imagemPerfil ? styles.invalidInput : ''}`}
-                                id="imagemPerfil"
-                                name="imagemPerfil"
-                                placeholder="URL da Imagem de Perfil"
-                                {...formik.getFieldProps('imagemPerfil')}
-                            />
-                        </div>
-
-                        <button type="submit" className={`${styles.btn} btn`}><strong>Cadastrar</strong></button>
                     </form>
 
                     {/* Modal de confirmação */}
@@ -298,7 +313,7 @@ export default function FormCadastro() {
                             </div>
                         </div>
                     )}
-                     
+
                 </div>
             )}
         </Formik>

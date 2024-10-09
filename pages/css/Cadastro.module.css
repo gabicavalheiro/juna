@@ -11,24 +11,76 @@
     src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
-.elipse3{
+
+.elipse3, .elipse4 {
     position: absolute;
-    top: 0;
-    left: 0;
-}
-.elipse4{
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    animation-duration: 7s;
+    animation-timing-function: ease-in-out; /* Suavidade na animação */
+    animation-fill-mode: forwards; /* Mantém a posição final após a animação */
+    animation-iteration-count: infinite; /* Faz a animação se repetir indefinidamente */
 }
 
-.cadastro{
+.elipse3 {
+    top: -10%; /* Posiciona um pouco acima da tela */
+    left: 0;
+    animation-name: slideDown;
+}
+
+.elipse4 {
+    bottom: -10%; /* Posiciona um pouco abaixo da tela */
+    right: 0;
+    animation-name: slideUp;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%); /* Começa fora da tela, de cima */
+    }
+    50% {
+        transform: translateY(0); /* Vai para a posição original */
+    }
+    100% {
+        transform: translateY(-100%); /* Mantém na posição final */
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%); /* Começa fora da tela, de baixo */
+    }
+    50% {
+        transform: translateY(0); /* Vai para a posição original */
+    }
+    100% {
+        transform: translateY(100%); /* Mantém na posição final */
+    }
+}
+
+.title h1 {
+    animation-duration: 1s; /* Duração da animação */
+    animation-timing-function: ease-in-out; /* Suavidade na animação */
+    animation-fill-mode: forwards; /* Mantém a posição final após a animação */
+    animation-name: slideInLeft; /* Nome da animação */
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%); /* Começa fora da tela, à esquerda */
+        opacity: 0; /* Inicia invisível */
+    }
+    100% {
+        transform: translateX(0); /* Vai para a posição original */
+        opacity: 1; /* Fica visível */
+    }
+}
+
+.cadastro {
     width: 50%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #BA6DB5;
+    background-color: #252525;
     color: white;
     display: flex;
     align-items: center;
@@ -36,22 +88,20 @@
     flex-direction: column;
 }
 
-.cadastro .title h1{
+.cadastro .title h1 {
     font-family: 'Josefin Sans Bold';
     font-size: 210%;
     margin-bottom: 45%;
     position: absolute;
     top: 9%;
     left: 36%;
-    
 }
 
-
-.form{
+.form {
     margin-top: 20%;
 }
 
-.logo{
+.logo {
     width: 50%;
     height: 100%;
     position: absolute;
@@ -62,8 +112,8 @@
     justify-content: center;
 }
 
-.logo .title h1{
-    color: #BA6DB5;
+.logo .title h1 {
+    color: #252525;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,8 +121,8 @@
     font-size: 250%;
 }
 
-@media (max-width: 1000px){
-    .page{
+@media (max-width: 1000px) {
+    .page {
         flex-direction: column;
     }
 }

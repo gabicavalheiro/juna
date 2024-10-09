@@ -11,7 +11,6 @@ const ModalGeneric = ({
   confirmText = "Save",
   cancelText = "Cancel",
   removeText = "Remove",
-  onSubmit // Função de submit que será chamada no botão de submit
 }) => {
   if (!show) {
     return null;
@@ -28,6 +27,8 @@ const ModalGeneric = ({
           {children}
         </div>
         <div className={styles.modalFooter}>
+
+          
           {onRemove && (
             <button onClick={onRemove} className={styles.removeButton}>
               {removeText}
@@ -35,9 +36,9 @@ const ModalGeneric = ({
           )}
 
 
-          {onSubmit && ( // Adiciona o botão de submit se a função onSubmit estiver definida
-            <button onClick={onSubmit} className={styles.confirmButton}>
-              Submit
+          {onConfirm && ( // Adiciona o botão de submit se a função onSubmit estiver definida
+            <button onClick={onConfirm} className={styles.confirmButton}>
+              {confirmText}
             </button>
           )}
 

@@ -1,6 +1,7 @@
 import styles from './css/Cadastro.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormCadastroAdm from '../ui/components/form/formCadastroAdm';
+import './css/global.css' 
 
 export default function Cadastro() {
     return (

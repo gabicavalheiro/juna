@@ -236,6 +236,7 @@ export default function Publicacoes() {
             <ModalGeneric
                 show={showModal}
                 onClose={handleCloseModal}
+                onConfirm={handleCreatePublicacao}
                 title="Detalhes da Publicação"
                 className={styles.modalDesc}
             >

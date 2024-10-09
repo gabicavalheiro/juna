@@ -57,7 +57,7 @@
   }
   
   
-  .removeButton, .confirmButton {
+ .confirmButton {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -66,6 +66,15 @@
 
   }
   
+
+  .modalFooter .removeButton{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Josefin Sans Medium';
+  }
+
   .removeButton {
     background-color: #ff4e4e;
     color: #ffffff;
@@ -76,9 +85,7 @@
     color: white;
   }
   
-  .removeButton:hover{
-    background-color: #f39696;
-  }
+ 
 
   .confirmButton:hover{
     background-color: #98e994;

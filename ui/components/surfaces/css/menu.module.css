@@ -37,7 +37,7 @@
     display: flex;
     width: 18vw;
     height: 90vh;
-    background: #BA6DB5;
+    background: #252525;
     color: white;
     flex-direction: column;
     margin: 2%;
@@ -91,7 +91,7 @@
     left: 60%;
     top: 70%;
     background-color: #ffffff;
-    color: #BA6DB5;
+    color: #252525;
     border: none;
     border-radius: 50%;
     padding: 0.6vw;
@@ -133,7 +133,7 @@
 
 .menu .link:hover,
 .menu .link.active {
-    color: #BA6DB5;
+    color: #252525;
     background-color: white;
     border-radius: 15px 0px 0px 15px;
     font-weight: bold;
@@ -148,14 +148,14 @@
 
 
 .menuToggle {
-    color: #BA6DB5;
+    color: #252525;
     background: transparent;
     border: none;
     cursor: pointer;
     position: absolute; /* Permite que o botão fique dentro do menu */
     border-radius: 5px; /* Arredondar os cantos do botão */
     padding: 10px; /* Espaçamento interno */
-    box-shadow: 0 2px 5px #BA6DB5; /* Sombra para destaque */
+    box-shadow: 0 2px 5px #252525; /* Sombra para destaque */
     background-color: #ffffff ;
     transition: background 0.3s;
     bottom: 10%;
