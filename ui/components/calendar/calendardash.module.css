@@ -21,7 +21,7 @@
 }
 .hoje h2{
     font-family: 'Josefin Sans Medium';
-    color: #ad60a6;
+    color: #252525;
     align-self: flex-start;
     margin-left: 5%;
     margin-top: 5%;
@@ -30,11 +30,11 @@
 
 .hoje ul li{
     font-family: 'Josefin Sans Light';
-    color: #ad60a6;
+    color: #252525;
     list-style-type: none;
     padding-bottom: 5%;
     padding-top: 5%;
-    border-bottom: 3px solid #ad60a6;
+    border-bottom: 3px solid #252525;
     width: 150%;
 
 }

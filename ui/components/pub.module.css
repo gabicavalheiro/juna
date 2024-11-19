@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: 'Josefin Sans Light';
     src: url('../../src/josefin/JosefinSans-Light.ttf') format('truetype');
@@ -12,52 +11,59 @@
     src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
-
-.proximaPublicacao{
+.proximaPublicacao {
     padding: 5%;
     border: 1px solid #eee;
     box-shadow: 1px 1px 2px 2px #eee;
-    width: 650px;
+    width: 300%;
     border-radius: 15px;
-    font-family: 'josefin sans medium';
+    font-family: 'Josefin Sans Medium';
     margin-bottom: 2%;
 }
 
-
-.proximaPublicacao h2{
-    color: #a75aa1
+.proximaPublicacao h2 {
+    color: #252525;
 }
 
-.publicacao{
+.publicacao {
     display: flex;
     flex-direction: row;
     gap: 50%;
 }
 
-.titulo{
-    background-color: #a75aa1;
+.titulo {
+    background-color: #252525;
     color: #fff;
     text-align: center;
     padding: 80%;
     border-radius: 15px;
-    width: 120%;
+    width: 150%;
+    font-size: 90%;
+    position: relative; /* Torna possível posicionar o .data */
 }
 
-.data{
+.data {
     position: absolute;
-    top: 77%;
+    margin-left: 3%;
+    bottom: 2%;
     background-color: #fff;
-    padding: 0.5%;
-    color: #a75aa1;
-    margin-left: 1%;
+    padding: 0.5% 1%;
+    color: #252525;
     border-radius: 15px;
-
+    font-size: 80%;
 }
 
-.lateral{
-    color: #a75aa1;
-    text-align: center;
+.lateral {
+    color: #252525;
+    border-radius: 10px;
+    border: 1px solid #252525;
     display: flex;
-    flex-direction: row;
-    margin-left: 2%;
+    flex-direction: column;
+    padding: 3% 9%;
+    margin-top: -5%;
+    margin-left: -14%;
+}
+
+.descricao, .empresa {
+    margin-left: -30%;
 }

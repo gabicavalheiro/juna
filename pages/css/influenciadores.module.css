@@ -44,7 +44,7 @@
     flex-direction: row;
     padding: 5% 15%;
     font-family: 'josefin sans medium';
-    color: #a75aa1;
+    color: #252525;
     
 
 }
@@ -66,7 +66,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #a75aa1;
+    color: #252525;
     font-family: 'Josefin Sans Medium';
     font-weight: 600;
 }

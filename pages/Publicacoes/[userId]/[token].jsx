@@ -11,49 +11,29 @@ export default function Publicacoes() {
     const [publicacoes, setPublicacoes] = useState([]);
     const [filteredPublicacoes, setFilteredPublicacoes] = useState([]);
     const [users, setUsers] = useState([]);
-    const [userId, setUserId] = useState(''); // Estado para o ID do usuário
+    const [userId, setUserId] = useState('');
     const [selectedUserId, setSelectedUserId] = useState('');
     const [selectedPublicacao, setSelectedPublicacao] = useState(null);
     const router = useRouter();
-    const { userId: adminId } = router.query; // Extrai userId da rota
-    const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal
+    const { userId: adminId } = router.query;
+    const [showCreateModal, setShowCreateModal] = useState(false); // Modal de Criação
+    const [showDetailModal, setShowDetailModal] = useState(false); // Modal de Detalhes
     const [novaPublicacao, setNovaPublicacao] = useState({
         empresa: '',
         descricao: '',
         plataforma: '',
-        userId: '', // Estado para armazenar o ID do usuário selecionado
+        userId: '',
         data: '',
         imagens: '',
         titulo: '',
-        adminId: adminId // adminId da rota
+        adminId: adminId
     });
 
     useEffect(() => {
         if (adminId) {
-            setUserId(adminId); // Define userId como adminId da rota
+            setUserId(adminId);
         }
     }, [adminId]);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(prev => !prev);
-    };
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 1300) {
-                setIsMenuOpen(false);
-            } else {
-                setIsMenuOpen(true);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Chama a função inicialmente
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     useEffect(() => {
         const fetchPublicacoes = async () => {
@@ -71,7 +51,7 @@ export default function Publicacoes() {
 
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://localhost:3333/allUsers'); // Ajuste o endpoint conforme necessário
+                const response = await fetch('http://localhost:3333/allUsers');
                 const data = await response.json();
                 setUsers(Array.isArray(data) ? data : []);
             } catch (error) {
@@ -95,14 +75,6 @@ export default function Publicacoes() {
         }
     };
 
-    const handleOpenModal = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNovaPublicacao(prevState => ({
@@ -113,29 +85,24 @@ export default function Publicacoes() {
 
     const handleCreatePublicacao = async () => {
         try {
-            // Formata a data para o formato yyyy-mm-dd
             const formattedDate = novaPublicacao.data ? new Date(novaPublicacao.data).toISOString().split('T')[0] : '';
 
             const requestBody = {
                 empresa: novaPublicacao.empresa,
                 descricao: novaPublicacao.descricao,
                 plataforma: novaPublicacao.plataforma,
-                userId: Number(novaPublicacao.userId), // Utiliza userId do formulário
+                userId: Number(novaPublicacao.userId),
                 data: formattedDate,
                 imagens: novaPublicacao.imagens,
                 titulo: novaPublicacao.titulo,
-                adminId: novaPublicacao.adminId // adminId da rota
+                adminId: novaPublicacao.adminId
             };
 
             const response = await fetch(`http://localhost:3333/publicacoes/${adminId}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(requestBody),
             });
-
-            console.log('JSON enviado:', requestBody);
 
             if (!response.ok) {
                 throw new Error('Erro ao cadastrar publicação');
@@ -144,26 +111,35 @@ export default function Publicacoes() {
             const publicacaoCriada = await response.json();
             setPublicacoes([...publicacoes, publicacaoCriada]);
             setFilteredPublicacoes([...filteredPublicacoes, publicacaoCriada]);
-
-            handleCloseModal(); // Fecha o modal após criar a publicação
-            window.location.reload();
-
+            setShowCreateModal(false); // Fecha o modal após criar a publicação
+            window.location.reload(); // Recarregar a página para refletir a nova publicação
         } catch (error) {
             console.error('Erro ao cadastrar publicação:', error);
         }
     };
 
+    const handleShowCreateModal = () => {
+        setShowCreateModal(true); // Exibir modal de criação
+    };
+
+    const handleCloseCreateModal = () => {
+        setShowCreateModal(false); // Fechar modal de criação
+    };
+
+    const handleOpenModalPublicacao = (publicacao) => {
+        setSelectedPublicacao(publicacao);
+        setShowDetailModal(true); // Abre o modal de detalhes
+    };
+
+    const handleCloseDetailModal = () => {
+        setShowDetailModal(false); // Fecha o modal de detalhes
+    };
+
     const handleDeletePublicacao = async (postId) => {
         try {
-            const response = await fetch(`http://localhost:3333/publicacoes/${postId}`, {
-                method: 'DELETE',
-            });
+            const response = await fetch(`http://localhost:3333/publicacoes/${postId}`, { method: 'DELETE' });
+            if (!response.ok) throw new Error('Erro ao excluir publicação');
 
-            if (!response.ok) {
-                throw new Error('Erro ao excluir publicação');
-            }
-
-            // Remove o post excluído da lista de publicações exibidas
             const updatedPublicacoes = publicacoes.filter(pub => pub.id !== postId);
             const updatedFilteredPublicacoes = filteredPublicacoes.filter(pub => pub.id !== postId);
             setPublicacoes(updatedPublicacoes);
@@ -173,15 +149,10 @@ export default function Publicacoes() {
         }
     };
 
-    const handleOpenModalPublicacao = (publicacao) => {
-        setSelectedPublicacao(publicacao);
-        setShowModal(true); // Abre o modal
-    };
-
     return (
         <div className={`${styles.publicacoes} ${isMenuOpen ? styles.menuOpen : styles.menuClosed}`}>
             <div className={styles.menu}>
-                <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+                <Menu isOpen={isMenuOpen}  />
             </div>
 
             <div className={styles.content}>
@@ -195,24 +166,25 @@ export default function Publicacoes() {
                         <select id="userFilter" className={styles.select} value={selectedUserId} onChange={handleUserFilterChange}>
                             <option value="">Todos</option>
                             {users.map(user => (
-                                <option key={user.id} value={user.id}>{user.nome}</option>
+                                <option key={user.id} value={user.id}>{user.username}</option>
                             ))}
                         </select>
                     </div>
 
                     <div className={styles.addButton}>
-                        <button onClick={handleOpenModal}><IoIosAddCircle />
+                        <button onClick={handleShowCreateModal}>
+                            <IoIosAddCircle />
                         </button>
                     </div>
                 </div>
 
                 <div className={styles.publi}>
                     <div className={styles.posts}>
-                        {Array.isArray(filteredPublicacoes) && filteredPublicacoes.map((pub) => (
+                        {filteredPublicacoes.map((pub) => (
                             <div key={pub.id} className={styles.post}>
                                 <div className={styles.content1}>
                                     <p className={styles.data}>{new Date(pub.data).toLocaleDateString()}</p>
-                                    <h3 onClick={() => handleOpenModalPublicacao(pub)} className={styles.title}>{pub.empresa}</h3> {/* Adiciona evento de clique no título */}
+                                    <h3 onClick={() => handleOpenModalPublicacao(pub)} className={styles.title}>{pub.empresa}</h3>
                                 </div>
 
                                 <div className={styles.content2}>
@@ -220,9 +192,10 @@ export default function Publicacoes() {
                                     <div className={styles.icons}>
                                         <div className={styles.userInfo}>
                                             <p><strong>{pub.plataforma}</strong></p>
-                                            <img src={pub.usuario ? pub.usuario?.imagemPerfil : pub.administrador?.imagemPerfil} alt="Imagem de perfil" className={styles.userImage} />
+                                            <img src={pub.usuario ? pub.usuario.imagemPerfil : pub.administrador.imagemPerfil} alt="Imagem de perfil" className={styles.userImage} />
                                         </div>
-                                        <button className={styles.deleteButton} onClick={() => handleDeletePublicacao(pub.id)}><IoMdRemoveCircle />
+                                        <button className={styles.deleteButton} onClick={() => handleDeletePublicacao(pub.id)}>
+                                            <IoMdRemoveCircle />
                                         </button>
                                     </div>
                                 </div>
@@ -232,29 +205,53 @@ export default function Publicacoes() {
                 </div>
             </div>
 
-            {/* Modal para exibir detalhes da publicação */}
+            {/* Modal de Criação */}
             <ModalGeneric
-                show={showModal}
-                onClose={handleCloseModal}
+                show={showCreateModal}
+                onClose={handleCloseCreateModal}
                 onConfirm={handleCreatePublicacao}
+                title="Criar Nova Publicação"
+            >
+                <div className={styles.modalPost}>
+                    <label>TÍTULO</label>
+                    <input type="text" name="titulo" onChange={handleInputChange} value={novaPublicacao.titulo} />
+
+                    <label>DESCRIÇÃO</label>
+                    <textarea name="descricao" onChange={handleInputChange} value={novaPublicacao.descricao}></textarea>
+
+                    <label>EMPRESA</label>
+                    <input type="text" name="empresa" onChange={handleInputChange} value={novaPublicacao.empresa} />
+
+                    <label>PLATAFORMA</label>
+                    <input type="text" name="plataforma" onChange={handleInputChange} value={novaPublicacao.plataforma} />
+
+                    <label>DATA</label>
+                    <input type="date" name="data" onChange={handleInputChange} value={novaPublicacao.data} />
+
+                    <label>IMAGENS</label>
+                    <input type="text" name="imagens" onChange={handleInputChange} value={novaPublicacao.imagens} />
+                </div>
+            </ModalGeneric>
+
+            {/* Modal de Detalhes */}
+            <ModalGeneric
+                show={showDetailModal}
+                onClose={handleCloseDetailModal}
                 title="Detalhes da Publicação"
-                className={styles.modalDesc}
+                cancelText='FECHAR'
             >
                 {selectedPublicacao && (
                     <div className={styles.modalPost}>
-                        <p className={styles.tituloM}> <h3>Titulo</h3> <li>{selectedPublicacao.titulo} </li></p>
-                        <p className={styles.imagensM}> <h3>Referências</h3><img src={selectedPublicacao.imagens} alt="Imagens da publicação" /></p>
-                        <p className={styles.empresaM}> <h3>Empresa</h3> <li>{selectedPublicacao.empresa}</li></p>
-                        <p className={styles.descricaoM}> <h3>Descrição</h3><li>{selectedPublicacao.descricao}</li></p>
-                        <p className={styles.dataM}> <h3>Data</h3> <li>{new Date(selectedPublicacao.data).toLocaleDateString()}</li></p>
-                        <p className={styles.plataformaM}> <h3>Plataforma</h3><li>{selectedPublicacao.plataforma}</li></p>
-
-                        {/* Adicione mais campos conforme necessário */}
+                        <p><strong>TÍTULO</strong> {selectedPublicacao.titulo}</p>
+                        <p><strong>EMPRESA</strong> {selectedPublicacao.empresa}</p>
+                        <p><strong>DESCRIÇÃO</strong> {selectedPublicacao.descricao}</p>
+                        <p><strong>DATA</strong> {new Date(selectedPublicacao.data).toLocaleDateString()}</p>
+                        <p><strong>PLATAFORMA</strong> {selectedPublicacao.plataforma}</p>
+                        <p><strong>REF</strong>  <img src={selectedPublicacao.imagens} alt="Imagens da publicação" /></p>
+                       
                     </div>
                 )}
             </ModalGeneric>
         </div>
     );
 }
-
-

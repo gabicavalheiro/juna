@@ -1,27 +1,34 @@
 import styles from '../../pages/css/home.module.css'
+import Link from 'next/link'; 
+
 
 export default function Home() {
   return (
     <div classname={styles.home}>
-      <div className={styles.img}>
-        <img src="../elipse 3.png" alt="" />
-      </div>
+     
       <nav className={styles.nav}>
-        <a href="/Login">Login </a>
-        <a href="/Login">Entre em contato </a>
+        <img src="./logo.png" alt="logo" width="50px" height="50px" /> 
+        <Link href="/Login" className={styles.link}>SAIBA +</Link>
+      
+        <Link href="/Login" className={styles.link}>LOGIN</Link>
       </nav>
 
       <main>
         <div className={styles.main}>
-          <h1>                JUNA INFLUÊNCIA
+          <h1>           
+          A plataforma que <div className={styles.black}> VOCÊ PRECISA</div> para gerenciar os seus  <div className={styles.black}>CONTEÚDOS.</div>    
           </h1>
 
-         <div className={styles.btn}>
-         <button >ENTRE EM CONTATO</button>
-         </div>
+          <div className={styles.button}>
+            <button className={styles.btn}>
+              ACESSAR
+            </button>
+          </div>
 
         </div>
       </main>
+
+    
     </div>
   )
 }

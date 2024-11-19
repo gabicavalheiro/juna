@@ -26,7 +26,7 @@ export default function CalendarDash() {
                         throw new Error('User ID não encontrado na query');
                     }
 
-                    const response = await fetch(`http://localhost:3333/admin/${adminId}/events/day`);
+                    const response = await fetch(`https://junadeploy-production.up.railway.app/admin/${adminId}/events/day`);
                     if (!response.ok) {
                         throw new Error('Erro ao buscar eventos');
                     }

@@ -43,7 +43,7 @@
 }
 
 .title h1 {
-    color: #a75aa1;
+    color: #252525;
      
     width: 100%;  
 
@@ -51,21 +51,20 @@
 }
 
 .filter {
-    border: 1.5px solid #a75aa1;
+    border: 1.5px solid #252525;
     padding: 10px 10px;
     border-radius: 15px;
-    background-color: #a75aa1;
-    color: #fff;
+    color: #252525;
     width: 500px;
     position: relative;
     
 }
 
 .select {
-    border: 1px solid #a75aa1;
+    border: 1px solid #252525;
     border-radius: 10px;
     margin-left: 15%;
-    color: #a75aa1;
+    color: #252525;
     background: #fff;
     font-family: 'Josefin Sans Medium';
     font-size: medium;
@@ -73,6 +72,10 @@
     position: absolute;
     top: -3%;
     right: -1px;
+}
+
+.select:hover{
+    cursor: pointer;
 }
 
 .publi{
@@ -89,10 +92,11 @@
     width: 300px;
     height: 400px;
     border: 1px solid #fff;
-    padding: 15px;
+    padding: 18px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(120, 120, 120, 0.1);
     margin-bottom: 20px; /* Espaçamento inferior entre os cards */
+    border: 1px solid #252525;
 }
 
 
@@ -116,7 +120,7 @@
     width: 40%;
     margin-top: -2%;
     background-color: #fff;
-    color: #a75aa1;
+    color: #252525;
     border-radius: 15px;
 }
 
@@ -126,7 +130,7 @@
 }
 
 .content1 {
-    background-color: #a75aa1;
+    background-color: #252525;
     padding: 5% 10%;
     border-radius: 15px;
     color: #fff;
@@ -136,11 +140,11 @@
 .content2 .descricao {
     text-align: center;
     margin-top: 15%;
-    color: #a75aa1;
+    color: #252525;
 }
 .title:hover{
     cursor: pointer;
-    color: #350531;
+    color: #7f7f7f;
 }
 
 .icons {
@@ -168,10 +172,10 @@
     position: absolute;
     border: none;
     border-radius: 15px;
-    margin-left: 5%;
+    margin-left: 8%;
     color: #fb0000;
     font-size: 150%;
-    margin-right: -4%;
+    margin-right: -2%;
     background-color: #fff;
     margin-top: 10%;
 }
@@ -181,6 +185,9 @@
     background-color: #fff;
     color: #18b500;
     font-size: 200%
+}
+.addButton button:hover{
+    cursor: pointer;
 }
 
 
@@ -193,13 +200,13 @@
 
 .form label{
     margin-top: 3%;
-    color: #a75aa1;
+    color: #252525;
 }
 
 
 
 .input {
-    border: 1px solid #ad60a6;
+    border: 1px solid #252525;
     border-radius: 5px;
     padding: 5%;
     align-self: center;
@@ -219,7 +226,7 @@
     font-family: 'Josefin Sans Medium';
     appearance: none;
     width: 90%;
-    border: 1px solid #ad60a6;
+    border: 2px solid #252525;
     border-radius: 5px;
     padding: 5%;
     align-self: center;
@@ -231,38 +238,77 @@
     font-size: 120%;
 }
 
+.modalDesc {
+    max-height: 200px;
+    overflow-y: auto; /* Para adicionar rolagem caso o conteúdo ultrapasse a altura */
+}
 
-.modalPost{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    color: #a75aa1;
+.modalPost {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas de largura igual */
+    grid-auto-rows: minmax(30px, auto); /* Altura mínima para alinhar como tabela */
+    gap: 10px; /* Espaçamento entre colunas e linhas */
+    color: #252525;
     font-family: 'Josefin Sans Medium';
     font-weight: 600;
 }
 
-
-.imagensM img{
-    width: 50%;
-    height: 50%;
+.tituloM, .imagensM, .empresaM, .descricaoM, .dataM, .plataformaM {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    align-items: start;
 }
 
-.modalPost p{
-    display: flex;
-    flex-direction: row;
+.modalPost h3 {
+    margin: 0;
+    font-size: 0.8em; /* Ajuste o tamanho conforme necessário */
+    color: #252525;
+    border: 1px solid #252525;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 0.75em;
+}
+
+.modalPost li {
+    list-style: none;
+    font-size: 0.85em;
+}
+
+
+.modalPost{
+    margin-top: 10%;
+}
+
+
+.modalPost input, .modalPost textarea {
+    border-radius: 5px;
+    border: 1px solid #252525;
+    padding: 10px;
+    font-family: 'Josefin Sans Medium';
+
+
+}
+.imagensM img {
+    width: 50%;
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 5px;
+}
+
+.modalPost p {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Alinha os itens na mesma linha como uma tabela */
     align-items: center;
-    gap: 5%;
+    gap: 10px;
     width: 100%;
 }
 
-.modalPost h3{
-    background-color: #a75aa1;
-    color: #fff;
-    padding: 2%;
-    border-radius: 15px;
+.modalPost p strong{
+    border-radius: 10px;
+    border: 1px solid #252525;
+    padding: 10px;
 }
-
 /* Media queries para telas menores */
 
 @media (max-width: 768px) {

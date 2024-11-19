@@ -4,6 +4,7 @@ import styles from '../../css/dashAdmin.module.css';
 import Menu from '../../../ui/components/surfaces/menu';
 import CalendarDash from '../../../ui/components/calendar/calendarDash';
 import ProximaPublicacao from '../../../ui/components/proxPub';
+import { Riple } from 'react-loading-indicators';
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -22,7 +23,7 @@ export default function AdminDashboard() {
         if (userId && token) {
             const fetchUserData = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3333/usuarios/${userId}`);
+                    const response = await fetch(`https://junadeploy-production.up.railway.app/usuarios/${userId}`);
                     if (!response.ok) {
                         const errorData = await response.json();
                         throw new Error(errorData.msg || 'Erro ao buscar dados do usuário');
@@ -52,7 +53,13 @@ export default function AdminDashboard() {
     }, []);
 
     if (!userData && !error) {
-        return <div>Carregando...</div>;
+        return (
+            <div className={styles.fullPage}>
+                <div className={styles.ripple}>
+                    <Riple color="#000000" size="large" text="" textColor="#000000" />
+                </div>
+            </div>
+        );
     }
 
     if (error) {
@@ -63,24 +70,26 @@ export default function AdminDashboard() {
         <div className={styles.dashboard_admin}>
 
             <div className={styles.imagem}>
-                <img src="../../elipse 5.png" alt="" />
+                <div className={styles.cub}>
+                    <img src="../../logo_white.png" alt="" width="80px" height="80px" />
+                </div>
             </div>
             <div className={styles.menu}>
                 <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
             </div>
-    
+
             <div className={`${styles.content} ${isMenuOpen ? styles.open : styles.closed}`}>
                 <div className={styles.saudacoes}>
                     Seja muito bem-vindo, <strong className={styles.nome}>{userData.nome}</strong>!
                     <p>{currentDateTime}</p>
                 </div>
-    
+
                 <div className={styles.agenda} >
                     <div>
                         <CalendarDash />
                     </div>
                 </div>
-    
+
                 <div className={styles.line}>
                     <div >
                         <div>
@@ -91,5 +100,5 @@ export default function AdminDashboard() {
             </div>
         </div>
     );
-    
+
 }

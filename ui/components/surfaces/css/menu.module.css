@@ -47,20 +47,19 @@
     transition: width 0.3s ease;
     text-decoration: none;
 }
-
 .menu .imagem {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
+    width: 13vh;
+    height: 13vh;
+    border-radius: 50%; /* Mantém o círculo */
     margin-top: 8%;
     margin-left: auto;
     margin-right: auto;
     background-color: #ffffff;
     overflow: hidden;
-    position: relative;
+    position: relative; /* Permite posicionar o botão fora do círculo */
 }
 
 .menu .imageContainer {
@@ -69,42 +68,35 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .menu .imagem img,
 .menu .imagem .defaultIcon {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     object-fit: cover;
-    position: absolute;
-}
-
-.menu .imagem .defaultIcon {
-    font-size: 70%;
-    color: #cccccc;
 }
 
 .menu .editButton {
     position: absolute;
-    left: 60%;
-    top: 70%;
-    background-color: #ffffff;
-    color: #252525;
-    border: none;
-    border-radius: 50%;
-    padding: 0.6vw;
+    top: 15%; /* Ajusta a posição vertical fora do círculo */
+    left: 70%; /* Ajusta a posição horizontal fora do círculo */
+    color: #ffffff;
+    border: 1px solid white;
+    border-radius: 25%;
+    padding: 0.3vw;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1;
 }
 
+
 .menu .editButton:hover {
-    background-color: #f0f0f0;
+    color: #727272;
 }
 
 .menu nav {
@@ -126,7 +118,7 @@
     position: relative;
     overflow: hidden;
     font-family: 'Josefin Sans Medium';
-    font-size: 1.6vh;
+    font-size: 1vh;
     transition: background-color 0.3s;
     width: 100%;
 }
@@ -156,10 +148,10 @@
     border-radius: 5px; /* Arredondar os cantos do botão */
     padding: 10px; /* Espaçamento interno */
     box-shadow: 0 2px 5px #252525; /* Sombra para destaque */
-    background-color: #ffffff ;
+    background-color: #ffffff;
     transition: background 0.3s;
-    bottom: 10%;
-    right: -5px;
+    bottom:5%;
+    right: -5%;
 
 }
 

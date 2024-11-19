@@ -8,9 +8,9 @@ const ModalGeneric = ({
   children,
   onConfirm,
   onRemove,
-  confirmText = "Save",
-  cancelText = "Cancel",
-  removeText = "Remove",
+  confirmText = "SALVAR",
+  cancelText = "CANCELAR",
+  removeText = "REMOVER",
 }) => {
   if (!show) {
     return null;

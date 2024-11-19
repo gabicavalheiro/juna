@@ -14,65 +14,94 @@
     src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
-
-
-.img img{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 30%;
-}
-
-
-.home{
-    background-color: #c67acc;
-}
-.nav{
+.home {
     display: flex;
-    justify-content: end;
-    align-items: end;
-    flex-direction: row;
-    gap: 5%;
-    margin-right: 5%;
-    font-family: 'josefin sans medium';
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Garante que o contêiner ocupe toda a altura da tela */
+    position: relative; /* Define o contêiner principal como referência */
+
 }
 
-.nav a{
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2%;
+    width: 60%; /* Controle de largura para centralizar */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    background-color: #252525;
+    border-radius: 0px 0px 20px 20px;
+    font-family: 'Josefin Sans Medium';
+    font-size: larger;
+}
+
+
+.nav img {
+    margin-right: auto; /* Mantém a imagem à esquerda */
+}
+
+.nav a {
     text-decoration: none;
     color: white;
-    background-color: #a75aa1;
     padding: 2% 2%;
-    border-radius: 15px;
+    margin-left: 10px; /* Espaço entre os links e a imagem */
+}
+.nav a:hover {
+    font-family: 'Josefin Sans bold';
+
+    color: rgb(102, 102, 102);
+    
 }
 
-.main{
+.main {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 17%;
-    margin-left: 20%;
-    font-family: 'josefin sans medium'
-    
+    align-items: center;
+    flex-direction: row;
+    gap: 10%;
+    font-family: 'Josefin Sans Medium';
+    text-align: center; /* Centraliza o texto */
+    margin-top: 10%;
 }
 
 
 .main h1{
     font-size: 350%;
-    color: #a75aa1;
+    color: #252525;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 
-.btn button{
+
+.black{
+    color: #6a6a6a;
+}
+
+.button{
+    border-radius: 10px;
+    border: 1px solid #252525;
+    padding: 10px 15px;
+
+}
+
+.btn {
+    background-color: #252525;
     color: white;
-    background-color: #a75aa1;
-    padding: 8% 15%;
-    border-radius: 15px;
-    border: 1px solid #a75aa1;
-    font-family: 'josefin sans medium';
-    
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: 'Josefin Sans Medium';
+    font-size: medium;
+
 }
 
-.btn{
-    width: 250px;
+.footer img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-right: 0; /* Alinha a imagem à direita */
+    height: auto;
 }

@@ -21,7 +21,7 @@
     margin: 0 auto;
     text-align: center;
     font-family: 'Josefin Sans Medium';
-    color: #ad60a6;
+    color: #252525;
 }
 
 .header {
@@ -50,7 +50,9 @@
 .dayLabel {
     font-weight: bold;
     padding: 10px;
-    background-color: #f5e6f0;
+    border: #252525 1px solid;
+    border-radius: 3px;
+
 }
 
 .day {
@@ -83,14 +85,14 @@ button .pass {
 }
 
 .eventItem {
-    color: #4e234b;
+    color: #252525;
     font-size: 50%;
 }
 
 .input,
 
 .inputTime {
-    border: 1px solid #ad60a6;
+    border: 1px solid #252525;
     border-radius: 5px;
     padding: 5%;
     align-self: center;
@@ -109,7 +111,7 @@ button .pass {
     font-family: 'Josefin Sans Medium';
     appearance: none;
     width: 90%;
-    border: 1px solid #ad60a6;
+    border: 1px solid #252525;
     border-radius: 5px;
     padding: 5%;
     align-self: center;

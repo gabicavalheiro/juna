@@ -206,19 +206,24 @@ export const Calendar = () => {
 
     const daysArray = getDaysArray(currentDate.getMonth(), currentDate.getFullYear());
 
+    
+
+
+
+    
     return (
         <div className={styles.calendar}>
             <div className={styles.component}></div>
             <div className={styles.header}>
                 <button className={styles.pass} style={{ border: 'none', backgroundColor: '#ffff' }} onClick={() => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)))}>
-                    <FaArrowCircleLeft style={{ color: '#ad60a6', cursor: "pointer" }} size={25} />
+                    <FaArrowCircleLeft style={{ color: '#252525', cursor: "pointer" }} size={30} />
                 </button>
                 <h2 className={styles.h2}>
                     {currentDate.toLocaleString('default', { month: 'long' })} <FaCalendarAlt style={{ marginRight: '20px' }} />
                     {currentDate.getFullYear()}
                 </h2>
                 <button className={styles.pass} style={{ border: 'none', backgroundColor: '#ffff' }} onClick={() => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)))}>
-                    <FaArrowCircleRight style={{ color: '#ad60a6', cursor: "pointer" }} size={25} />
+                    <FaArrowCircleRight style={{ color: '#252525', cursor: "pointer" }} size={30} />
                 </button>
             </div>
             <div className={styles.grid}>
@@ -290,7 +295,7 @@ export const Calendar = () => {
                     <option value="">Selecione um usuário</option>
                     {users.map((user) => (
                         <option key={user.id} value={user.id}>
-                            {user.nome}
+                            {user.username}
                         </option>
                     ))}
                 </select>

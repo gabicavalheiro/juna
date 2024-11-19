@@ -76,11 +76,15 @@ export default function Menu({ isOpen, toggleMenu }) {
                             <img src={imageSrc} alt="Imagem de perfil" className={styles.image} />
                         ) : (
                             <BsPersonCircle className={styles.defaultIcon} />
-                        )}
+                        )},
                     </div>
-                    <div className={styles.edit}>
+                   
+                </div>
+
+
+                <div className={styles.edit}>
                         <label htmlFor="imageUpload" className={styles.editButton}>
-                            <BsPencil size={20} />
+                            <BsPencil size={15} />
                             <input
                                 id="imageUpload"
                                 type="file"
@@ -90,7 +94,8 @@ export default function Menu({ isOpen, toggleMenu }) {
                             />
                         </label>
                     </div>
-                </div>
+
+
 
                 <nav className={styles.nav}>
                     <MenuItem
@@ -121,6 +126,18 @@ export default function Menu({ isOpen, toggleMenu }) {
                         activeLink={activeLink}
                         onClick={() => handleLinkClick(`/Influenciadores/${userId}/${token}`)}>
                         INFLUENCIADORES
+                    </MenuItem>
+                    <MenuItem  href={"/Projetos"}
+                        className={styles.link}
+                        activeLink={activeLink}
+                        onClick={() => handleLinkClick(`/Projetos/${userId}/${token}`)}>
+                        PROJETOS
+                    </MenuItem>
+                    <MenuItem  href={"/Metas"}
+                        className={styles.link}
+                        activeLink={activeLink}
+                        onClick={() => handleLinkClick(`/Metas/${userId}/${token}`)}>
+                        METAS
                     </MenuItem>
                     <MenuItem  href={"/Cadastro"}
                         className={styles.link}

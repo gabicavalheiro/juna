@@ -67,7 +67,7 @@
   }
   
 
-  .modalFooter .removeButton{
+  .modalFooter .removeButton, .cancelbuttton{
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -78,6 +78,17 @@
   .removeButton {
     background-color: #ff4e4e;
     color: #ffffff;
+  }
+
+
+  .cancelButton {
+    background-color: #ff4e4e;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Josefin Sans Medium';
   }
   
   .confirmButton {
@@ -93,6 +104,7 @@
   }
 
   .title{
-    color: #a75aa1;
+    color: #252525;
     font-family: 'josefin sans medium';
+    text-transform: uppercase;
   }

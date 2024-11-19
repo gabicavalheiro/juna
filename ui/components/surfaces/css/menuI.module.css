@@ -6,15 +6,15 @@
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    font-family: 'Josefin Sans Medium';
-    font-size: 120%;
+    font-family: 'Josefin Sans medium';
+    font-size: 100%;
     width: 100%;
     text-decoration: none; /* Remover sublinhado */
 }
 
  .link:hover,
  .link.active {
-    color: #BA6DB5;
+    color: #7d7d7d;
     background-color: white;
     border-radius: 15px 0px 0px 15px;
     font-weight: bold;

@@ -34,7 +34,7 @@
   .saveButton {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #ad60a6;
+    background-color: #252525;
     color: white;
     border: none;
     border-radius: 5px;
@@ -44,16 +44,16 @@
   }
   
   .saveButton:hover{
-    background-color: #e0addb;
-    color: #391336;
+    background-color: #747474;
+    color: #000000;
   }
 
   .input{
-    border: 1px solid #ad60a6;
+    border: 1px solid #252525;
     border-radius: 5px;
     padding: 5%;
   }
 
   .input:active{
-    border: 1px solid #391336;
+    border: 1px solid #000000;
   }
