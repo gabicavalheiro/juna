@@ -9,7 +9,7 @@ const ModalGeneric = ({
   onConfirm,
   onRemove,
   confirmText = "SALVAR",
-  cancelText = "CANCELAR",
+  cancelText = "FECHAR",
   removeText = "REMOVER",
 }) => {
   if (!show) {

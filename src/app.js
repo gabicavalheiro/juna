@@ -7,6 +7,8 @@ import AdminDashboard from '../pages/dashboard-administrador/[userId]/[token]';
 import Agenda from '../pages/Agenda/[userId]/[token]';
 import Cadastro from '../pages/Cadastro-administrador';
 import Influenciadores from '../pages/Influenciadores/[userId]/[token]';
+import Projetos from '../pages/Projetos/[userId]/[token]';
+import Metas from '../pages/Metas/[userId]/[token]';
 
 
 const PrivateRoute = ({ Component, ...rest }) => {
@@ -24,6 +26,8 @@ const App = () => (
                 <Route path="/Agenda/:userId/:token" element={<PrivateRoute Component={Agenda} />} />
                 <Route path="/Cadastro/:userId/:token" element={<PrivateRoute Component={Cadastro} />} />
                 <Route path="/Influenciadores/:userId/:token" element={<PrivateRoute Component={Influenciadores} />} />
+                <Route path="/Projetos/:userId/:token" element={<PrivateRoute Component={Projetos} />} />
+                <Route path="/Metas/:userId/:token" element={<PrivateRoute Component={Metas} />} />
                 <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
         </Router>

@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+  
 
 }
 
@@ -30,6 +31,7 @@
     font-family: 'Josefin Sans Medium';
     font-size: 150%;
     color: #252525;
+    
     
 }
 
@@ -58,13 +60,21 @@
     border-radius: 15px;
     border: #252525 1px solid;
     margin-bottom: -12%;
+    padding-bottom: 5% ;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .line{
-    margin-top: 20%;
+    width: 100%;
+    margin-top: 15%;
     display: flex;
     flex-direction: row;
-    gap: 50%;
+    gap: 25%;
+}
+
+.meta{ 
+    margin-left: 4%;
 }
 
 
@@ -83,21 +93,6 @@
     top: 0;
 
 }
-
-
-
-.fullPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Garante que o contêiner ocupe a altura total da janela */
-    width: 100vw; /* Garante que ocupe a largura total da janela */
-    position: fixed; /* Garante que o contêiner esteja fixado na tela */
-    top: 0;
-    left: 0;
-    background-color: #f5f5f5; /* Opcional: cor de fundo */
-    z-index: 9999; /* Certifique-se de que está acima de outros elementos */
-  }
   
   .ripple {
     display: flex;
@@ -117,3 +112,5 @@
 .content.open {
     margin-left: 2%; /* Ou a largura do seu menu */
 }
+
+

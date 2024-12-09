@@ -27,7 +27,7 @@ export default function FormLogin() {
   // Função de login com axios
   const autoLogin = async (email, senha) => {
     try {
-      const response = await axios.post('https://junadeploy-production.up.railway.app/login', { email, senha });
+      const response = await axios.post('http://localhost:3333/login', { email, senha });
       const { userId, role, token } = response.data;
       const route = role === 'admin' ? '/dashboard-administrador/[usuarioId]/[token]' : '/dashboard-cliente/[usuarioId]/[token]';
       router.push({ pathname: route, query: { usuarioId: userId, token } });

@@ -1,9 +1,10 @@
-import styles from '../../css/metas.module.css'
+import Metas from "../ui/components/metas/metas"
+import styles from '../ui/components/metas/metas.module.css'
 
-export default function Metas(){
+export default function Meta(){
     return(
         <div className={styles.metas}>
-            
+            <Metas/>
         </div>
     )
 }

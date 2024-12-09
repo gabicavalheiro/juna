@@ -1,0 +1,117 @@
+
+.menuOpen .content {
+    margin-left: 0; /* Ajuste conforme a largura do seu menu aberto */
+}
+
+.menuClosed .content {
+    margin-left: 0%; /* O conteúdo ocupa todo o espaço quando o menu está fechado */
+}
+
+.projects {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    font-family: 'Josefin Sans Medium';
+    margin-top: 2%;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: -10%;
+    gap: 5%;
+  
+    
+}
+
+.title h1 {
+    color: #252525;
+     
+    width: 100%;  
+
+   
+}
+.filter {
+    padding: 10px 10px;
+    border-radius: 15px;
+    color: #252525;
+    width: 500px;
+    position: relative;
+    display: flex; /* Alinha os elementos horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.select {
+    border: 1px solid #252525;
+    border-radius: 10px;
+    background-color: #252525;
+    font-family: 'Josefin Sans Medium';
+    font-size: medium;
+    padding: 10px 20px; /* Reduzido para melhorar o alinhamento */
+    color: white;
+}
+
+.select:hover {
+    color: #7c7c7c;
+    cursor: pointer;
+}
+
+.head {
+    display: flex;
+    flex-direction: row;
+}
+
+.head button {
+    border: none;
+    background-color: #fff;
+    color: #18b500;
+    font-size: 150%;
+    padding: 10px 15px;
+    margin: 0; /* Remove margens externas */
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.head button:hover {
+    background-color: #f0f0f0; /* Efeito de hover */
+}
+
+.project{
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(120, 120, 120, 0.1);
+    position: relative;
+    padding-bottom: 5%;
+   
+}
+
+.project h3{
+    color: #fff;
+    background-color: #252525;
+    padding: 10% 5%;
+    border-radius: 15px;
+    text-align: center;  
+      
+}
+
+.project:hover{
+    cursor: pointer;
+    color: #7c7c7c;
+}
+
+.project p{
+    text-align: center;
+}
+
+.project button{
+    position: absolute;
+    right: 0;
+    border: none;
+    background: #fff;
+
+}

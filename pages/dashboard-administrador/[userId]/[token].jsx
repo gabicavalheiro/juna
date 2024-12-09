@@ -5,6 +5,7 @@ import Menu from '../../../ui/components/surfaces/menu';
 import CalendarDash from '../../../ui/components/calendar/calendarDash';
 import ProximaPublicacao from '../../../ui/components/proxPub';
 import { Riple } from 'react-loading-indicators';
+import Metas from '../../../ui/components/metas/metas';
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -23,7 +24,7 @@ export default function AdminDashboard() {
         if (userId && token) {
             const fetchUserData = async () => {
                 try {
-                    const response = await fetch(`https://junadeploy-production.up.railway.app/usuarios/${userId}`);
+                    const response = await fetch(`http://localhost:3333/usuarios/${userId}`);
                     if (!response.ok) {
                         const errorData = await response.json();
                         throw new Error(errorData.msg || 'Erro ao buscar dados do usuário');
@@ -68,37 +69,34 @@ export default function AdminDashboard() {
 
     return (
         <div className={styles.dashboard_admin}>
-
-            <div className={styles.imagem}>
-                <div className={styles.cub}>
-                    <img src="../../logo_white.png" alt="" width="80px" height="80px" />
-                </div>
+        <div className={styles.imagem}>
+            <div className={styles.cub}></div>
+        </div>
+        <div className={styles.menu}>
+            <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        </div>
+    
+        <div className={`${styles.content} ${isMenuOpen ? styles.open : styles.closed}`}>
+            <div className={styles.saudacoes}>
+                Seja muito bem-vindo, <strong className={styles.nome}>{userData.nome}</strong>!
+                <p>{currentDateTime}</p>
             </div>
-            <div className={styles.menu}>
-                <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+    
+            <div className={styles.agenda}>
+                <CalendarDash />
             </div>
-
-            <div className={`${styles.content} ${isMenuOpen ? styles.open : styles.closed}`}>
-                <div className={styles.saudacoes}>
-                    Seja muito bem-vindo, <strong className={styles.nome}>{userData.nome}</strong>!
-                    <p>{currentDateTime}</p>
+    
+            <div className={styles.line}>
+                <div className={styles.publicacao}>
+                    <ProximaPublicacao />
                 </div>
-
-                <div className={styles.agenda} >
-                    <div>
-                        <CalendarDash />
-                    </div>
-                </div>
-
-                <div className={styles.line}>
-                    <div >
-                        <div>
-                            <ProximaPublicacao />
-                        </div>
-                    </div>
+                <div className={styles.meta}>
+                    <Metas />
                 </div>
             </div>
         </div>
+    </div>
+    
     );
 
 }

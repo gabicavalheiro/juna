@@ -22,6 +22,7 @@
     bottom: 0;
     left: 0;
     z-index: 1000; /* Certifique-se de que o menu está acima do conteúdo */
+    margin-right: 20%;
 }
 
 .menu.open {
