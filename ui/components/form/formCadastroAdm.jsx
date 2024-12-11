@@ -114,7 +114,7 @@ export default function FormCadastro() {
         console.log('Dados do formulário:', values);
 
         try {
-            const response = await fetch('http://localhost:3333/Usuarios', {
+            const response = await fetch('https://junadeploy-production.up.railway.app/Usuarios', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

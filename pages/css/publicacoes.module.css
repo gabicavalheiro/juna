@@ -214,6 +214,8 @@
     margin: 4% auto; /* Centraliza e dá espaço entre os campos */
 }
 
+
+
 .input::placeholder {
     font-family: 'Josefin Sans Medium';
 }
@@ -253,7 +255,7 @@
     font-weight: 600;
 }
 
-.tituloM, .imagensM, .empresaM, .descricaoM, .dataM, .plataformaM {
+.tituloM, .imagensM, .empresaM, .descricaoM, .dataM, .plataformaM, .selectM {
     display: flex;
     flex-direction: column;
     text-transform: uppercase;
@@ -282,7 +284,7 @@
 }
 
 
-.modalPost input, .modalPost textarea {
+.modalPost input, .modalPost textarea, .selectM {
     border-radius: 5px;
     border: 1px solid #252525;
     padding: 10px;
@@ -308,6 +310,10 @@
     border-radius: 10px;
     border: 1px solid #252525;
     padding: 10px;
+}
+
+.selectM{
+    margin-bottom: 2%;
 }
 /* Media queries para telas menores */
 

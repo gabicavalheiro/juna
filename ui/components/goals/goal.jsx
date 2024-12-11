@@ -12,7 +12,7 @@ export default function Metas() {
     // Função para buscar as metas
     const fetchMetas = async () => {
         try {
-            const response = await axios.get('http://localhost:3333/metas'); // Altere para a rota da sua API
+            const response = await axios.get('https://junadeploy-production.up.railway.app/metas'); // Altere para a rota da sua API
             setMetas(response.data); // Define as metas retornadas pela API
         } catch (err) {
             console.error('Erro ao buscar metas:', err);

@@ -24,7 +24,7 @@ export default function AdminDashboard() {
         if (userId && token) {
             const fetchUserData = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3333/usuarios/${userId}`);
+                    const response = await fetch(`https://junadeploy-production.up.railway.app/usuarios/${userId}`);
                     if (!response.ok) {
                         const errorData = await response.json();
                         throw new Error(errorData.msg || 'Erro ao buscar dados do usuário');

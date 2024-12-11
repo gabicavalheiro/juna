@@ -34,7 +34,7 @@ export default function PaginaMetas() {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:3333/allUsers');
+            const response = await axios.get('https://junadeploy-production.up.railway.app/allUsers');
             setUsers(response.data);
         } catch (error) {
             console.error("Erro ao buscar usuários:", error);
@@ -43,7 +43,7 @@ export default function PaginaMetas() {
 
     const buscarMetas = async () => {
         try {
-            const response = await axios.get(`http://localhost:3333/meta/admin/${userId}`);
+            const response = await axios.get(`https://junadeploy-production.up.railway.app/meta/admin/${userId}`);
             setMetasExistentes(response.data.filter(meta => meta.status !== 'concluida'));
         } catch (error) {
             console.error('Erro ao buscar metas:', error);
@@ -52,7 +52,7 @@ export default function PaginaMetas() {
 
     const buscarConcluidas = async () => {
         try {
-            const response = await axios.get(`http://localhost:3333/metas/admin/${userId}/concluidas`);
+            const response = await axios.get(`https://junadeploy-production.up.railway.app/metas/admin/${userId}/concluidas`);
             setMetasConcluidas(response.data);
         } catch (error) {
             console.error('Erro ao buscar metas concluídas:', error);
@@ -61,7 +61,7 @@ export default function PaginaMetas() {
 
     const buscarMetasSemana = async () => {
         try {
-            const response = await axios.get(`http://localhost:3333/metas/admin/${userId}/semana`);
+            const response = await axios.get(`https://junadeploy-production.up.railway.app/metas/admin/${userId}/semana`);
             setMetasSemana(response.data);
         } catch (error) {
             console.error('Erro ao buscar metas da semana:', error);
@@ -75,7 +75,7 @@ export default function PaginaMetas() {
 
     const handleCreateMeta = async () => {
         try {
-            const response = await axios.post(`http://localhost:3333/metas/${userId}`, {
+            const response = await axios.post(`https://junadeploy-production.up.railway.app/metas/${userId}`, {
                 ...metaData,
                 adminId: userId
             });
@@ -90,7 +90,7 @@ export default function PaginaMetas() {
 
     const marcarComoConcluida = async (metaId) => {
         try {
-            const response = await axios.put(`http://localhost:3333/metas/${metaId}/concluir`);
+            const response = await axios.put(`https://junadeploy-production.up.railway.app/metas/${metaId}/concluir`);
             if (response.status === 200) {
                 setShowConfetti(true);
                 setTimeout(() => {
@@ -106,7 +106,7 @@ export default function PaginaMetas() {
 
     const voltarParaPendente = async (metaId) => {
         try {
-            const response = await axios.put(`http://localhost:3333/metas/${metaId}/pendente`);
+            const response = await axios.put(`https://junadeploy-production.up.railway.app/metas/${metaId}/pendente`);
             if (response.status === 200) {
                 buscarMetas();
                 buscarConcluidas();
@@ -118,7 +118,7 @@ export default function PaginaMetas() {
 
     const excluirMeta = async (metaId) => {
         try {
-            const response = await axios.delete(`http://localhost:3333/metas/${metaId}`);
+            const response = await axios.delete(`https://junadeploy-production.up.railway.app/metas/${metaId}`);
             if (response.status === 200) {
                 buscarMetas();
             }

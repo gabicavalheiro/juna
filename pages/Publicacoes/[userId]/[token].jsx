@@ -16,8 +16,8 @@ export default function Publicacoes() {
     const [selectedPublicacao, setSelectedPublicacao] = useState(null);
     const router = useRouter();
     const { userId: adminId } = router.query;
-    const [showCreateModal, setShowCreateModal] = useState(false); // Modal de Criação
-    const [showDetailModal, setShowDetailModal] = useState(false); // Modal de Detalhes
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showDetailModal, setShowDetailModal] = useState(false);
     const [novaPublicacao, setNovaPublicacao] = useState({
         empresa: '',
         descricao: '',
@@ -38,7 +38,7 @@ export default function Publicacoes() {
     useEffect(() => {
         const fetchPublicacoes = async () => {
             try {
-                const response = await fetch('http://localhost:3333/publicacoes');
+                const response = await fetch('https://junadeploy-production.up.railway.app/publicacoes');
                 const data = await response.json();
                 setPublicacoes(Array.isArray(data) ? data : []);
                 setFilteredPublicacoes(Array.isArray(data) ? data : []);
@@ -51,7 +51,7 @@ export default function Publicacoes() {
 
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://localhost:3333/allUsers');
+                const response = await fetch('https://junadeploy-production.up.railway.app/allUsers');
                 const data = await response.json();
                 setUsers(Array.isArray(data) ? data : []);
             } catch (error) {
@@ -84,6 +84,18 @@ export default function Publicacoes() {
     };
 
     const handleCreatePublicacao = async () => {
+        if (
+            !novaPublicacao.titulo ||
+            !novaPublicacao.descricao ||
+            !novaPublicacao.empresa ||
+            !novaPublicacao.plataforma ||
+            !novaPublicacao.data ||
+            !novaPublicacao.userId
+        ) {
+            alert('Preencha todos os campos obrigatórios!');
+            return;
+        }
+
         try {
             const formattedDate = novaPublicacao.data ? new Date(novaPublicacao.data).toISOString().split('T')[0] : '';
 
@@ -95,10 +107,10 @@ export default function Publicacoes() {
                 data: formattedDate,
                 imagens: novaPublicacao.imagens,
                 titulo: novaPublicacao.titulo,
-                adminId: novaPublicacao.adminId
+                adminId: adminId
             };
 
-            const response = await fetch(`http://localhost:3333/publicacoes/${adminId}`, {
+            const response = await fetch(`https://junadeploy-production.up.railway.app/publicacoes/${adminId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(requestBody),
@@ -111,33 +123,45 @@ export default function Publicacoes() {
             const publicacaoCriada = await response.json();
             setPublicacoes([...publicacoes, publicacaoCriada]);
             setFilteredPublicacoes([...filteredPublicacoes, publicacaoCriada]);
-            setShowCreateModal(false); // Fecha o modal após criar a publicação
-            window.location.reload(); // Recarregar a página para refletir a nova publicação
+            setShowCreateModal(false);
+
+            setNovaPublicacao({
+                empresa: '',
+                descricao: '',
+                plataforma: '',
+                userId: '',
+                data: '',
+                imagens: '',
+                titulo: '',
+            });
+
+
         } catch (error) {
+
             console.error('Erro ao cadastrar publicação:', error);
         }
     };
 
     const handleShowCreateModal = () => {
-        setShowCreateModal(true); // Exibir modal de criação
+        setShowCreateModal(true);
     };
 
     const handleCloseCreateModal = () => {
-        setShowCreateModal(false); // Fechar modal de criação
+        setShowCreateModal(false);
     };
 
     const handleOpenModalPublicacao = (publicacao) => {
         setSelectedPublicacao(publicacao);
-        setShowDetailModal(true); // Abre o modal de detalhes
+        setShowDetailModal(true);
     };
 
     const handleCloseDetailModal = () => {
-        setShowDetailModal(false); // Fecha o modal de detalhes
+        setShowDetailModal(false);
     };
 
     const handleDeletePublicacao = async (postId) => {
         try {
-            const response = await fetch(`http://localhost:3333/publicacoes/${postId}`, { method: 'DELETE' });
+            const response = await fetch(`https://junadeploy-production.up.railway.app/publicacoes/${postId}`, { method: 'DELETE' });
             if (!response.ok) throw new Error('Erro ao excluir publicação');
 
             const updatedPublicacoes = publicacoes.filter(pub => pub.id !== postId);
@@ -152,7 +176,7 @@ export default function Publicacoes() {
     return (
         <div className={`${styles.publicacoes} ${isMenuOpen ? styles.menuOpen : styles.menuClosed}`}>
             <div className={styles.menu}>
-                <Menu isOpen={isMenuOpen}  />
+                <Menu isOpen={isMenuOpen} />
             </div>
 
             <div className={styles.content}>
@@ -192,12 +216,21 @@ export default function Publicacoes() {
                                     <div className={styles.icons}>
                                         <div className={styles.userInfo}>
                                             <p><strong>{pub.plataforma}</strong></p>
-                                            <img src={pub.usuario ? pub.usuario.imagemPerfil : pub.administrador.imagemPerfil} alt="Imagem de perfil" className={styles.userImage} />
+                                            <img
+                                                src={
+                                                    (pub.usuario && pub.usuario.imagemPerfil) ||
+                                                    (pub.administrador && pub.administrador.imagemPerfil) ||
+                                                    'https://via.placeholder.com/150' // Caminho para uma imagem padrão
+                                                }
+                                                alt="Imagem de perfil"
+                                                className={styles.userImage}
+                                            />
                                         </div>
                                         <button className={styles.deleteButton} onClick={() => handleDeletePublicacao(pub.id)}>
                                             <IoMdRemoveCircle />
                                         </button>
                                     </div>
+
                                 </div>
                             </div>
                         ))}
@@ -209,7 +242,7 @@ export default function Publicacoes() {
             <ModalGeneric
                 show={showCreateModal}
                 onClose={handleCloseCreateModal}
-                onConfirm={handleCreatePublicacao}
+                onSubmit={handleCreatePublicacao} // Passa onSubmit aqui
                 title="Criar Nova Publicação"
             >
                 <div className={styles.modalPost}>
@@ -230,8 +263,17 @@ export default function Publicacoes() {
 
                     <label>IMAGENS</label>
                     <input type="text" name="imagens" onChange={handleInputChange} value={novaPublicacao.imagens} />
+
+                    <label>USUÁRIO</label>
+                    <select className={styles.selectM} name="userId" onChange={handleInputChange} value={novaPublicacao.userId}>
+                        <option value=""></option>
+                        {users.map(user => (
+                            <option key={user.id} value={user.id}>{user.username}</option>
+                        ))}
+                    </select>
                 </div>
             </ModalGeneric>
+
 
             {/* Modal de Detalhes */}
             <ModalGeneric
@@ -247,8 +289,7 @@ export default function Publicacoes() {
                         <p><strong>DESCRIÇÃO</strong> {selectedPublicacao.descricao}</p>
                         <p><strong>DATA</strong> {new Date(selectedPublicacao.data).toLocaleDateString()}</p>
                         <p><strong>PLATAFORMA</strong> {selectedPublicacao.plataforma}</p>
-                        <p><strong>REF</strong>  <img src={selectedPublicacao.imagens} alt="Imagens da publicação" /></p>
-                       
+                        <p><strong>REF</strong> <img src={selectedPublicacao.imagens} alt="Imagens da publicação" /></p>
                     </div>
                 )}
             </ModalGeneric>

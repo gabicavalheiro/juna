@@ -11,10 +11,20 @@ const ModalGeneric = ({
   confirmText = "SALVAR",
   cancelText = "FECHAR",
   removeText = "REMOVER",
+  onSubmit, // Adiciona o suporte para onSubmit
 }) => {
   if (!show) {
     return null;
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Previne o comportamento padrão do formulário
+    if (onSubmit) {
+      onSubmit(); // Chama a função onSubmit se estiver definida
+    } else if (onConfirm) {
+      onConfirm(); // Fallback para onConfirm se onSubmit não estiver definido
+    }
+  };
 
   return (
     <div className={styles.modalBackdrop}>
@@ -23,29 +33,24 @@ const ModalGeneric = ({
           &times;
         </button>
         <h2 className={styles.title}>{title}</h2>
-        <div className={styles.modalBody}>
+        <form onSubmit={handleSubmit} className={styles.modalBody}> {/* Adiciona o formulário */}
           {children}
-        </div>
-        <div className={styles.modalFooter}>
+          <div className={styles.modalFooter}>
+            {onRemove && (
+              <button type="button" onClick={onRemove} className={styles.removeButton}>
+                {removeText}
+              </button>
+            )}
 
-          
-          {onRemove && (
-            <button onClick={onRemove} className={styles.removeButton}>
-              {removeText}
-            </button>
-          )}
-
-
-          {onConfirm && ( // Adiciona o botão de submit se a função onSubmit estiver definida
-            <button onClick={onConfirm} className={styles.confirmButton}>
+            <button type="submit" className={styles.confirmButton}>
               {confirmText}
             </button>
-          )}
 
-          <button onClick={onClose} className={styles.cancelButton}>
-            {cancelText}
-          </button>
-        </div>
+            <button type="button" onClick={onClose} className={styles.cancelButton}>
+              {cancelText}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

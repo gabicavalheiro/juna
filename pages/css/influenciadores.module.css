@@ -101,3 +101,19 @@
     color: rgb(9, 96, 1);
     list-style: circle;
 }
+
+.generateReportButton {
+    font-family: Josefin Sans Medium;
+    background-color: #252525;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.generateReportButton:hover {
+    background-color: #606a61;
+}

@@ -23,7 +23,7 @@ export default function Influenciadores() {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch('http://localhost:3333/allUsers/user'); // Substitua pela sua rota real
+            const response = await fetch('https://junadeploy-production.up.railway.app/allUsers/user'); // Substitua pela sua rota real
             if (response.ok) {
                 const data = await response.json();
                 setUsers(data); // Define os usuários obtidos na resposta
@@ -68,9 +68,9 @@ export default function Influenciadores() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Evita o comportamento padrão de submit do formulário
-    
+
         try {
-            const response = await fetch(`http://localhost:3333/updateUserDetails/${selectedUser.id}`, {
+            const response = await fetch(`https://junadeploy-production.up.railway.app/updateUserDetails/${selectedUser.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -89,7 +89,33 @@ export default function Influenciadores() {
             console.error('Erro ao atualizar informações:', error);
         }
     };
-    
+
+    const generateMonthlyReport = async (userId) => {
+        try {
+            const response = await fetch(`https://junadeploy-production.up.railway.app/${userId}/relatorioMensal`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/pdf'
+                }
+            });
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Relatorio_Mensal_${userId}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            } else {
+                console.error('Erro ao gerar o relatório:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao gerar o relatório:', error);
+        }
+    };
+
+
     return (
         <div className={styles.influenciadores}>
             <div className={styles.menu}>
@@ -104,14 +130,22 @@ export default function Influenciadores() {
                         <div className={styles.userInfo}>
                             <p className={styles.userName}>{user.nome.toUpperCase()}</p>
                             <p className={styles.userUsername}>@{user.username}</p>
+
                             <button className={styles.infoButton} onClick={() => handleInfoClick(user.id)}>
                                 Informações adicionais <IoMdAdd style={{ marginLeft: '5%' }} />
                             </button>
 
                             <div className={styles.descr}>
-
                                 <li>{user.descricao}</li>
                             </div>
+
+                            {/* Botão de geração de relatório */}
+                            <button
+                                className={styles.generateReportButton}
+                                onClick={() => generateMonthlyReport(user.id)}
+                            >
+                            Relatório Mensal 
+                            </button>
                         </div>
                     </div>
                 ))}
@@ -126,7 +160,7 @@ export default function Influenciadores() {
                     onSubmit={handleSubmit}
                     formData={formData}
                     onChange={handleChange}
-                    
+
                 >
 
                     <div className={styles.modal}>

@@ -115,3 +115,77 @@
     background: #fff;
 
 }
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre os campos */
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modalDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre as informações */
+}
+
+.publicationsSection {
+    margin-top: 1.5rem;
+}
+
+.publicationCard {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+}
+
+.publicationCard p {
+    margin: 0.5rem 0;
+}
+
+.modalForm input, 
+.modalForm textarea, 
+.modalForm select {
+    border-radius: 5px;
+    border: 1px solid #252525;
+    padding: 10px;
+    font-family: 'Josefin Sans Medium', sans-serif;
+    font-size: 10px; /* Tamanho da fonte */
+    width: 100%; /* Para ocupar todo o espaço disponível */
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+    background-color: #fff; /* Cor de fundo */
+    color: #252525; /* Cor do texto */
+}
+
+.modalForm textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 100px; /* Altura mínima */
+}
+
+.modalForm select {
+    appearance: none; /* Remove o estilo padrão do navegador */
+    background-color: #f9f9f9; /* Fundo mais claro para o select */
+    cursor: pointer; /* Aponta que é clicável */
+}
