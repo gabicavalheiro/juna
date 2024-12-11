@@ -11,22 +11,34 @@
     src: url('../../src/josefin/JosefinSans-Medium.ttf') format('truetype');
 }
 
-.dashboard_admin{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  
-
-}
-
-.content{
+.dashboard_admin {
+    flex: 1; /* Faz o conteúdo ocupar todo o espaço restante */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 5%;
-
+    padding: 20px; /* Espaçamento interno */
+    background-color: #ffffff; /* Cor de fundo para o conteúdo */
+    overflow-y: auto; /* Rolagem vertical, se necessário */
+    margin-left: 5%;
 }
+
+
+
+.content {
+    display: flex; /* Menu e conteúdo ficam lado a lado */
+    flex-direction: row; /* Alinha os elementos horizontalmente */
+    height: 100vh; /* Garante que ocupe toda a altura da tela */
+    transition: margin-left 0.3s ease; /* Animação suave para menu */
+}
+
+.content.open {
+    margin-left: 0; /* Ajuste para menu aberto */
+}
+
+.content.closed {
+    margin-left: -200px; /* Ajuste para menu fechado (se necessário) */
+}
+
+
 .saudacoes{
     font-family: 'Josefin Sans Medium';
     font-size: 150%;
@@ -43,15 +55,6 @@
 
 }
 
-.content{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-left: 5%;
-    
-
-}
 
 .agenda{
     margin-top: 5%;
@@ -100,17 +103,28 @@
     align-items: center;
   }
   
-/* No seu arquivo CSS */
-.content {
-    transition: margin-left 0.3s ease; /* Animação suave */
+  .menu {
+    width: 250px; /* Largura do menu */
+    transition: width 0.3s ease; /* Animação suave ao abrir/fechar */
+    background-color: #f8f8f8; /* Cor de fundo para o menu */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombras para destaque */
 }
 
-.content.closed {
-    margin-left: -10%; /* Se o menu estiver fechado */
-}
-
-.content.open {
-    margin-left: 2%; /* Ou a largura do seu menu */
+.menu.closed {
+    width: 50px; /* Largura reduzida quando fechado */
 }
 
 
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column; /* Menu e conteúdo empilhados */
+    }
+
+    .menu {
+        width: 100%; /* Menu ocupa a largura total */
+    }
+
+    .dashboard_admin {
+        width: 100%; /* Conteúdo ocupa a largura total */
+    }
+}

@@ -5,7 +5,7 @@ import Menu from '../../../ui/components/surfaces/menu';
 import CalendarDash from '../../../ui/components/calendar/calendarDash';
 import ProximaPublicacao from '../../../ui/components/proxPub';
 import { Riple } from 'react-loading-indicators';
-import Metas from '../../../ui/components/metas/metas';
+import Metas from '../../../ui/components/goals/goal';
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -68,35 +68,40 @@ export default function AdminDashboard() {
     }
 
     return (
-        <div className={styles.dashboard_admin}>
-        <div className={styles.imagem}>
-            <div className={styles.cub}></div>
-        </div>
-        <div className={styles.menu}>
-            <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        </div>
-    
+
         <div className={`${styles.content} ${isMenuOpen ? styles.open : styles.closed}`}>
-            <div className={styles.saudacoes}>
-                Seja muito bem-vindo, <strong className={styles.nome}>{userData.nome}</strong>!
-                <p>{currentDateTime}</p>
+            {/* Menu lateral */}
+            <div className={styles.menu}>
+                <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
             </div>
-    
-            <div className={styles.agenda}>
-                <CalendarDash />
-            </div>
-    
-            <div className={styles.line}>
-                <div className={styles.publicacao}>
-                    <ProximaPublicacao />
+
+            {/* Conteúdo principal */}
+            <div className={styles.dashboard_admin}>
+                <div className={styles.imagem}>
+                    <div className={styles.cub}></div>
                 </div>
-                <div className={styles.meta}>
-                    <Metas />
+
+                <div className={styles.saudacoes}>
+                    Seja muito bem-vindo, <strong className={styles.nome}>{userData.nome}</strong>!
+                    <p>{currentDateTime}</p>
+                </div>
+
+                <div className={styles.agenda}>
+                    <CalendarDash />
+                </div>
+
+                <div className={styles.line}>
+                    <div className={styles.publicacao}>
+                        <ProximaPublicacao />
+                    </div>
+                    <div className={styles.meta}>
+                        <Metas />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+
+
     );
 
 }

@@ -27,7 +27,7 @@ export default function Menu({ isOpen, toggleMenu }) {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const response = await fetch(`https://junadeploy-production.up.railway.app/usuarios/${userId}`, {
+                const response = await fetch(`http://localhost:3333/usuarios/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

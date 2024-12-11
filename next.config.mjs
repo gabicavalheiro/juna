@@ -9,8 +9,8 @@ export async function rewrites() {
             destination: '/Agenda/[userId]/[token]',
         },
         {
-            source: '/metas/:userId/:token',
-            destination: '/metas/[userId]/[token]',
+            source: '/Metas/:userId/:token',
+            destination: '/Metas/[userId]/[token]',
         },
         {
             source: '/Publicacoes/:userId/:token',
