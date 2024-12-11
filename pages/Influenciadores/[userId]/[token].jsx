@@ -92,7 +92,7 @@ export default function Influenciadores() {
 
     const generateMonthlyReport = async (userId) => {
         try {
-            const response = await fetch(`https://junadeploy-production.up.railway.app/${userId}/relatorioMensal`, {
+            const response = await fetch(`https://junadeploy-production.up.railway.app/usuario/${userId}/relatorioMensal`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/pdf'
